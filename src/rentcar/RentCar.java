@@ -5,10 +5,13 @@
  */
 package rentcar;
 
+import rentcar.auth.Login;
+
 /**
  *
  * @author Admin
  */
+
 public class RentCar {
 
     /**
@@ -16,8 +19,8 @@ public class RentCar {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-//        Pemesanan_page pemesanan = new Pemesanan_page();
-//        pemesanan.setVisible(true);
+        Login login = new Login();
+        login.setVisible(true);
     }
     
 }

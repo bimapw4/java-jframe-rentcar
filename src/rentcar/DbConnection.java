@@ -27,7 +27,7 @@ public class DbConnection {
         try{  
             Class.forName("com.mysql.jdbc.Driver");  
             conn =DriverManager.getConnection(  
-            "jdbc:mysql://localhost/rent_car","root","");  
+            "jdbc:mysql://localhost/db_rental","root","");  
             //here sonoo is database name, root is username and password  
             stmt = conn.createStatement();
             
