@@ -9,6 +9,7 @@ import java.awt.Window;
 import javax.swing.JFrame;
 import rentcar.auth.Login;
 import rentcar.auth.Register;
+import rentcar.car.AddCar;
 import rentcar.car.Car;
 import rentcar.customer.customer;
 import rentcar.dashboard.dashboard;
@@ -43,6 +44,12 @@ public class MenuNavigation {
     public void car(Window current) {
         Car car = new Car();
         car.setVisible(true);
+        current.setVisible(false);
+    }
+
+    public void AddCar(Window current) {
+        AddCar AddCar = new AddCar();
+        AddCar.setVisible(true);
         current.setVisible(false);
     }
 

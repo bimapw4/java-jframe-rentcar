@@ -5,6 +5,12 @@
  */
 package rentcar.car;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import rentcar.MenuNavigation;
 
 /**
@@ -17,9 +23,13 @@ public class Car extends javax.swing.JFrame {
      * Creates new form Car
      */
     private MenuNavigation menuNav;
+    private Connection con;
+    private Statement statment;
+
     public Car() {
         this.menuNav = new MenuNavigation();
         initComponents();
+        loadData();
     }
 
     /**
@@ -43,7 +53,7 @@ public class Car extends javax.swing.JFrame {
         kGradientPanel6 = new keeptoo.KGradientPanel();
         jLabel12 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        carList = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         kGradientPanel9 = new keeptoo.KGradientPanel();
         jLabel18 = new javax.swing.JLabel();
@@ -125,20 +135,25 @@ public class Car extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jLabel12.setText("List Car");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        carList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Car Id", "Car name", "Merk", "Type", "Fee", "Status"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(carList);
 
         jButton1.setText("New Car");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout kGradientPanel6Layout = new javax.swing.GroupLayout(kGradientPanel6);
         kGradientPanel6.setLayout(kGradientPanel6Layout);
@@ -328,6 +343,33 @@ public class Car extends javax.swing.JFrame {
         menuNav.customer(this);
     }//GEN-LAST:event_jLabel8MouseClicked
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        menuNav.AddCar(this);
+    }//GEN-LAST:event_jButton1ActionPerformed
+    private void loadData() {
+        try {
+            DefaultTableModel model = (DefaultTableModel) carList.getModel();
+            // clear data
+            model.setRowCount(0);
+            String selectQuery = "SELECT * FROM tb_mobil";
+            ResultSet result = statment.executeQuery(selectQuery);
+            while (result.next()) {
+                model.addRow(new Object[]{
+                    result.getInt("id_mobil"),
+                    result.getString("nama_mobil"),
+                    result.getString("merk"),
+                    result.getString("tipe"),
+                    result.getString("fee"),
+                    result.getString("status")});
+
+                carList.setModel(model);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -364,6 +406,7 @@ public class Car extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable carList;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
@@ -378,7 +421,6 @@ public class Car extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private keeptoo.KGradientPanel kGradientPanel1;
     private keeptoo.KGradientPanel kGradientPanel2;
     private keeptoo.KGradientPanel kGradientPanel6;

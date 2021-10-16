@@ -134,6 +134,11 @@ public class Login extends javax.swing.JFrame {
         password.setText("Password");
         password.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(75, 160, 175)));
         password.setSelectionColor(new java.awt.Color(0, 153, 153));
+        password.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                passwordMouseClicked(evt);
+            }
+        });
         password.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 passwordActionPerformed(evt);
@@ -270,7 +275,6 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         email.setText("");
-        password.setText("");
 
     }//GEN-LAST:event_emailMouseClicked
 
@@ -295,6 +299,11 @@ public class Login extends javax.swing.JFrame {
     private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_passwordActionPerformed
+
+    private void passwordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passwordMouseClicked
+        // TODO add your handling code here:
+        password.setText("");
+    }//GEN-LAST:event_passwordMouseClicked
 
     /**
      * @param args the command line arguments

@@ -357,7 +357,7 @@ public class Register extends javax.swing.JFrame {
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         // TODO add your handling code here:
 
-        menuNav.login(this);
+        menuNav.adminDashboard(this);
     }//GEN-LAST:event_jLabel3MouseClicked
 
     /**
