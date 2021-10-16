@@ -5,6 +5,13 @@
  */
 package rentcar.employee;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import rentcar.DbConnection;
 import rentcar.MenuNavigation;
 
 /**
@@ -16,10 +23,17 @@ public class Employee extends javax.swing.JFrame {
     /**
      * Creates new form Employee
      */
+    private Connection con;
+    private Statement statment;
     private MenuNavigation menuNav;
     public Employee() {
+        DbConnection DB = new DbConnection();
+        DB.Connect();
+        con = DB.conn;
+        statment = DB.stmt;
         this.menuNav = new MenuNavigation();
         initComponents();
+        loadData();
     }
 
     /**
@@ -44,7 +58,7 @@ public class Employee extends javax.swing.JFrame {
         kGradientPanel2 = new keeptoo.KGradientPanel();
         kGradientPanel4 = new keeptoo.KGradientPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        employeeList = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
 
@@ -164,7 +178,7 @@ public class Employee extends javax.swing.JFrame {
         kGradientPanel4.setkEndColor(new java.awt.Color(208, 233, 255));
         kGradientPanel4.setkStartColor(new java.awt.Color(208, 233, 255));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        employeeList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -172,12 +186,17 @@ public class Employee extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "NO", "name", "email", "phone"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(employeeList);
 
-        jButton2.setText("Add Employee");
+        jButton2.setText("Add Customer");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout kGradientPanel4Layout = new javax.swing.GroupLayout(kGradientPanel4);
         kGradientPanel4.setLayout(kGradientPanel4Layout);
@@ -284,6 +303,30 @@ public class Employee extends javax.swing.JFrame {
         menuNav.customer(this);
     }//GEN-LAST:event_jLabel11MouseClicked
 
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2MouseClicked
+    
+    private void loadData() {
+        try {
+            DefaultTableModel model = (DefaultTableModel) employeeList.getModel();
+            // clear data
+            model.setRowCount(0);
+            String selectQuery = "SELECT * FROM tb_user";
+            ResultSet result = statment.executeQuery(selectQuery);
+            while (result.next()) {
+                model.addRow(new Object[]{
+                    result.getInt("id_user"),
+                    result.getString("fullname"),
+                    result.getString("email"),
+                    result.getString("no_telp")});
+
+                employeeList.setModel(model);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -320,6 +363,7 @@ public class Employee extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable employeeList;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -332,7 +376,6 @@ public class Employee extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private keeptoo.KGradientPanel kGradientPanel1;
     private keeptoo.KGradientPanel kGradientPanel2;
     private keeptoo.KGradientPanel kGradientPanel4;
