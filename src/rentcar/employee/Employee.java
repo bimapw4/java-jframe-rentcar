@@ -5,6 +5,8 @@
  */
 package rentcar.employee;
 
+import rentcar.MenuNavigation;
+
 /**
  *
  * @author Admin
@@ -14,7 +16,9 @@ public class Employee extends javax.swing.JFrame {
     /**
      * Creates new form Employee
      */
+    private MenuNavigation menuNav;
     public Employee() {
+        this.menuNav = new MenuNavigation();
         initComponents();
     }
 
@@ -54,14 +58,29 @@ public class Employee extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Swis721 Blk BT", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(117, 190, 251));
         jLabel4.setText("Dashboard");
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Swis721 Blk BT", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(117, 190, 251));
         jLabel5.setText("List Order");
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel5MouseClicked(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Swis721 Blk BT", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(117, 190, 251));
         jLabel6.setText("Car");
+        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel6MouseClicked(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Swis721 Blk BT", 0, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(117, 190, 251));
@@ -96,6 +115,11 @@ public class Employee extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Swis721 Blk BT", 0, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(117, 190, 251));
         jLabel11.setText("Customer");
+        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel11MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout kGradientPanel1Layout = new javax.swing.GroupLayout(kGradientPanel1);
         kGradientPanel1.setLayout(kGradientPanel1Layout);
@@ -230,6 +254,26 @@ public class Employee extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        // TODO add your handling code here:
+        menuNav.adminDashboard(this);
+    }//GEN-LAST:event_jLabel4MouseClicked
+
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        // TODO add your handling code here:
+        menuNav.order(this);
+    }//GEN-LAST:event_jLabel5MouseClicked
+
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+        // TODO add your handling code here:
+        menuNav.car(this);
+    }//GEN-LAST:event_jLabel6MouseClicked
+
+    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
+        // TODO add your handling code here:
+        menuNav.customer(this);
+    }//GEN-LAST:event_jLabel11MouseClicked
 
     /**
      * @param args the command line arguments
