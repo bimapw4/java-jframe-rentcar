@@ -5,6 +5,8 @@
  */
 package rentcar.dashboard;
 
+import rentcar.MenuNavigation;
+
 /**
  *
  * @author Admin
@@ -14,7 +16,10 @@ public class dashboard extends javax.swing.JFrame {
     /**
      * Creates new form dashboard
      */
+        
+    private MenuNavigation menuNav;
     public dashboard() {
+        this.menuNav = new MenuNavigation(); 
         initComponents();
     }
 
@@ -59,18 +64,38 @@ public class dashboard extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Swis721 Blk BT", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(117, 190, 251));
         jLabel5.setText("List Order");
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel5MouseClicked(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Swis721 Blk BT", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(117, 190, 251));
         jLabel6.setText("Car");
+        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel6MouseClicked(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Swis721 Blk BT", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(117, 190, 251));
         jLabel7.setText("Employee");
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Swis721 Blk BT", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(117, 190, 251));
         jLabel8.setText("Customer");
+        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel8MouseClicked(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Swis721 Blk BT", 0, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(117, 190, 251));
@@ -333,6 +358,26 @@ public class dashboard extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        // TODO add your handling code here:
+        menuNav.order(this);
+    }//GEN-LAST:event_jLabel5MouseClicked
+
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+        // TODO add your handling code here:
+        menuNav.car(this);
+    }//GEN-LAST:event_jLabel6MouseClicked
+
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+        // TODO add your handling code here:
+        menuNav.employee(this);
+    }//GEN-LAST:event_jLabel7MouseClicked
+
+    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
+        // TODO add your handling code here:
+        menuNav.customer(this);
+    }//GEN-LAST:event_jLabel8MouseClicked
 
     /**
      * @param args the command line arguments
