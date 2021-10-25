@@ -13,6 +13,7 @@ import rentcar.car.AddCar;
 import rentcar.car.Car;
 import rentcar.customer.customer;
 import rentcar.dashboard.dashboard;
+import rentcar.employee.AddEmployee;
 import rentcar.employee.Employee;
 import rentcar.order.ListOrder;
 
@@ -63,6 +64,12 @@ public class MenuNavigation {
     public void employee(Window current) {
         Employee employee = new Employee();
         employee.setVisible(true);
+        current.setVisible(false);
+    }
+
+    public void Addemployee(Window current) {
+        AddEmployee AddEmployee = new AddEmployee();
+        AddEmployee.setVisible(true);
         current.setVisible(false);
     }
 

@@ -351,7 +351,7 @@ public class Car extends javax.swing.JFrame {
         try {
             DefaultTableModel model = (DefaultTableModel) carList.getModel();
             // clear data
-            model.setRowCount(0);
+             model.setRowCount(0);
             String selectQuery = "SELECT * FROM tb_mobil";
             ResultSet result = statment.executeQuery(selectQuery);
             while (result.next()) {
