@@ -107,7 +107,7 @@ public class Login extends javax.swing.JFrame {
 
         email.setBackground(new java.awt.Color(208, 233, 255));
         email.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        email.setForeground(new java.awt.Color(153, 153, 153));
+        email.setText("saskia@gmail.com");
         email.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(75, 160, 175)));
         email.setSelectionColor(new java.awt.Color(0, 153, 153));
         email.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -137,7 +137,7 @@ public class Login extends javax.swing.JFrame {
         });
 
         password.setBackground(new java.awt.Color(208, 233, 255));
-        password.setForeground(new java.awt.Color(75, 160, 175));
+        password.setText("12345678");
         password.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(75, 160, 175)));
         password.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -259,7 +259,7 @@ public class Login extends javax.swing.JFrame {
             if (rs.next()) {
                 if (email.getText().equals(rs.getString("email")) && password.getText().equals(rs.getString("password"))) {
                     boolean isLogin = true;
-                    UserSession.setUserLogin(email.getText());
+                    UserSession.setUserLogin(rs.getString("fullname"));
                     if (rs.getString("jabatan").equals("Admin")) {
                         JOptionPane.showMessageDialog(null, "Success Login");
                         menuNav.adminDashboard(this);

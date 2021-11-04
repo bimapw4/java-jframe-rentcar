@@ -319,6 +319,11 @@ public class Car extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        // TODO add your handling code here:
+        menuNav.order(this);
+    }//GEN-LAST:event_jLabel5MouseClicked
+
     private void jLabel4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseEntered
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel4MouseEntered
@@ -328,25 +333,20 @@ public class Car extends javax.swing.JFrame {
         menuNav.adminDashboard(this);
     }//GEN-LAST:event_jLabel4MouseClicked
 
-    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        menuNav.order(this);
-    }//GEN-LAST:event_jLabel5MouseClicked
-
-    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
-        // TODO add your handling code here:
-        menuNav.employee(this);
-    }//GEN-LAST:event_jLabel7MouseClicked
+        menuNav.AddCar(this);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
         // TODO add your handling code here:
         menuNav.customer(this);
     }//GEN-LAST:event_jLabel8MouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
         // TODO add your handling code here:
-        menuNav.AddCar(this);
-    }//GEN-LAST:event_jButton1ActionPerformed
+        menuNav.employee(this);
+    }//GEN-LAST:event_jLabel7MouseClicked
     private void loadData() {
         try {
             DefaultTableModel model = (DefaultTableModel) carList.getModel();

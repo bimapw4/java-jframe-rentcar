@@ -11,9 +11,11 @@ import rentcar.auth.Login;
 import rentcar.auth.Register;
 import rentcar.car.AddCar;
 import rentcar.car.Car;
+import rentcar.car.CarMaster;
 import rentcar.customer.customer;
 import rentcar.dashboard.dashboard;
 import rentcar.employee.AddEmployee;
+import rentcar.customer.AddCustomer;
 import rentcar.employee.Employee;
 import rentcar.order.ListOrder;
 
@@ -43,7 +45,7 @@ public class MenuNavigation {
 
     // dish application
     public void car(Window current) {
-        Car car = new Car();
+        CarMaster car = new CarMaster();
         car.setVisible(true);
         current.setVisible(false);
     }
@@ -70,6 +72,12 @@ public class MenuNavigation {
     public void Addemployee(Window current) {
         AddEmployee AddEmployee = new AddEmployee();
         AddEmployee.setVisible(true);
+        current.setVisible(false);
+    }
+
+    public void AddCustomer(Window current) {
+        AddCustomer AddCustomer = new AddCustomer();
+        AddCustomer.setVisible(true);
         current.setVisible(false);
     }
 
