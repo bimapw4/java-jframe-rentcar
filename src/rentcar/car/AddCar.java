@@ -7,6 +7,7 @@ package rentcar.car;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
@@ -33,6 +34,7 @@ public class AddCar extends javax.swing.JFrame {
         con = DB.conn;
         statment = DB.stmt;
         this.menuNav = new MenuNavigation();
+        loadDataType();
 
     }
 
@@ -55,12 +57,9 @@ public class AddCar extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         userLogin = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        nama = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         merk = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        tipe = new javax.swing.JTextField();
         jLabel25 = new javax.swing.JLabel();
         fee = new javax.swing.JTextField();
         jLabel26 = new javax.swing.JLabel();
@@ -68,6 +67,7 @@ public class AddCar extends javax.swing.JFrame {
         btnLogin2 = new com.k33ptoo.components.KButton();
         rdAvailable = new javax.swing.JRadioButton();
         rdUnAvailable = new javax.swing.JRadioButton();
+        tipe = new javax.swing.JComboBox<>();
         listorders = new javax.swing.JLabel();
         employees = new javax.swing.JLabel();
         customers = new javax.swing.JLabel();
@@ -139,20 +139,6 @@ public class AddCar extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(75, 160, 175));
-        jLabel7.setText("Car Name :");
-
-        nama.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        nama.setForeground(new java.awt.Color(75, 160, 175));
-        nama.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(75, 160, 175)));
-        nama.setSelectionColor(new java.awt.Color(0, 153, 153));
-        nama.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                namaActionPerformed(evt);
-            }
-        });
-
         jLabel8.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(75, 160, 175));
         jLabel8.setText("Merk :");
@@ -170,16 +156,6 @@ public class AddCar extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(75, 160, 175));
         jLabel9.setText("Car Type :");
-
-        tipe.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        tipe.setForeground(new java.awt.Color(75, 160, 175));
-        tipe.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(75, 160, 175)));
-        tipe.setSelectionColor(new java.awt.Color(0, 153, 153));
-        tipe.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tipeActionPerformed(evt);
-            }
-        });
 
         jLabel25.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(75, 160, 175));
@@ -245,6 +221,12 @@ public class AddCar extends javax.swing.JFrame {
             }
         });
 
+        tipe.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tipeMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout kGradientPanel2Layout = new javax.swing.GroupLayout(kGradientPanel2);
         kGradientPanel2.setLayout(kGradientPanel2Layout);
         kGradientPanel2Layout.setHorizontalGroup(
@@ -273,20 +255,20 @@ public class AddCar extends javax.swing.JFrame {
                             .addComponent(btnLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(kGradientPanel2Layout.createSequentialGroup()
                                 .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7)
-                                    .addComponent(nama, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(tipe, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel9)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel8)
+                                        .addComponent(merk, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel9)
+                                        .addComponent(btnLogin2, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(tipe, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(80, 80, 80)
+                                .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel26)
-                                    .addComponent(btnLogin2, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(kGradientPanel2Layout.createSequentialGroup()
                                         .addComponent(rdAvailable)
                                         .addGap(18, 18, 18)
-                                        .addComponent(rdUnAvailable)))
-                                .addGap(80, 80, 80)
-                                .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel8)
-                                    .addComponent(merk, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(rdUnAvailable))
                                     .addComponent(fee, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel25))))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -306,33 +288,29 @@ public class AddCar extends javax.swing.JFrame {
                 .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
+                .addGap(35, 35, 35)
                 .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(kGradientPanel2Layout.createSequentialGroup()
                         .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(kGradientPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(nama, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(kGradientPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(merk, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(34, 34, 34)
-                        .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tipe, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(kGradientPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel25)
+                                .addComponent(merk, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(kGradientPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel25)
+                                .addGap(18, 18, 18)
+                                .addComponent(fee, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
-                        .addComponent(fee, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(28, 28, 28)
-                .addComponent(jLabel26)
-                .addGap(18, 18, 18)
-                .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rdAvailable)
-                    .addComponent(rdUnAvailable))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
+                        .addComponent(jLabel9)
+                        .addGap(18, 18, 18)
+                        .addComponent(tipe, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(kGradientPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel26)
+                        .addGap(18, 18, 18)
+                        .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(rdAvailable)
+                            .addComponent(rdUnAvailable))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 180, Short.MAX_VALUE)
                 .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLogin2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -473,17 +451,9 @@ public class AddCar extends javax.swing.JFrame {
         menuNav.car(this);
     }//GEN-LAST:event_carsMouseClicked
 
-    private void namaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_namaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_namaActionPerformed
-
     private void merkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_merkActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_merkActionPerformed
-
-    private void tipeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tipeActionPerformed
 
     private void feeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_feeActionPerformed
         // TODO add your handling code here:
@@ -494,22 +464,20 @@ public class AddCar extends javax.swing.JFrame {
         try {
             rdAvailable.setActionCommand("available");
             rdUnAvailable.setActionCommand("booked");
-            
+
             String status = statusGroup.getSelection().getActionCommand();
 
             String insertQuery = "INSERT INTO tb_mobil VALUES ('0','"
-                    + nama.getText() + "','"
                     + merk.getText() + "','"
-                    + tipe.getText() + "','"
                     + fee.getText() + "','"
-                    + status + "')";
-            
+                    + status + "','"
+                    + tipe.getItemAt(this.tipe.getSelectedIndex()).getId() + "')";
+
             PreparedStatement prepare = con.prepareStatement(insertQuery);
             prepare.execute();
             JOptionPane.showMessageDialog(this, "Car Added");
             menuNav.car(this);
-            
-            
+
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
             System.err.println(ex.getMessage());
@@ -548,6 +516,24 @@ public class AddCar extends javax.swing.JFrame {
         // TODO add your handling code here:
         menuNav.Role(this);
     }//GEN-LAST:event_jLabel23MouseClicked
+
+    private void tipeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tipeMouseClicked
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_tipeMouseClicked
+    private void loadDataType() {
+        try {
+            tipe.removeAllItems();
+
+            String selectQuery = "SELECT * FROM tb_tipe_mobil";
+            ResultSet result = statment.executeQuery(selectQuery);
+            while (result.next()) {
+                tipe.addItem(new ListType(result.getInt("id_tipe"), result.getString("tipe")));
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -611,7 +597,6 @@ public class AddCar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
@@ -620,11 +605,10 @@ public class AddCar extends javax.swing.JFrame {
     private keeptoo.KGradientPanel kGradientPanel2;
     private javax.swing.JLabel listorders;
     private javax.swing.JTextField merk;
-    private javax.swing.JTextField nama;
     private javax.swing.JRadioButton rdAvailable;
     private javax.swing.JRadioButton rdUnAvailable;
     private javax.swing.ButtonGroup statusGroup;
-    private javax.swing.JTextField tipe;
+    private javax.swing.JComboBox<ListType> tipe;
     private javax.swing.JLabel userLogin;
     // End of variables declaration//GEN-END:variables
 }
