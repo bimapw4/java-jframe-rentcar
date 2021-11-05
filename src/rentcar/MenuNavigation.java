@@ -10,8 +10,10 @@ import javax.swing.JFrame;
 import rentcar.auth.Login;
 import rentcar.auth.Register;
 import rentcar.car.AddCar;
-import rentcar.car.Car;
 import rentcar.car.CarMaster;
+import rentcar.role.Role;
+import rentcar.role.AddRole;
+import rentcar.car.AddCarType;
 import rentcar.customer.customer;
 import rentcar.dashboard.dashboard;
 import rentcar.employee.AddEmployee;
@@ -50,9 +52,27 @@ public class MenuNavigation {
         current.setVisible(false);
     }
 
+    public void AddRole(Window current) {
+        AddRole AddRole = new AddRole();
+        AddRole.setVisible(true);
+        current.setVisible(false);
+    }
+
+    public void Role(Window current) {
+        Role Role = new Role();
+        Role.setVisible(true);
+        current.setVisible(false);
+    }
+
     public void AddCar(Window current) {
         AddCar AddCar = new AddCar();
         AddCar.setVisible(true);
+        current.setVisible(false);
+    }
+
+    public void AddCarType(Window current) {
+        AddCarType AddCarType = new AddCarType();
+        AddCarType.setVisible(true);
         current.setVisible(false);
     }
 
