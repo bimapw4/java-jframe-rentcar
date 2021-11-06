@@ -118,17 +118,17 @@
                                   <Group type="102" alignment="1" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="idcust" alignment="0" min="-2" pref="383" max="-2" attributes="0"/>
+                                          <Component id="nik" alignment="0" min="-2" pref="383" max="-2" attributes="0"/>
                                           <Component id="email" alignment="0" min="-2" pref="383" max="-2" attributes="0"/>
                                           <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="btnLogin2" alignment="0" min="-2" pref="133" max="-2" attributes="0"/>
-                                          <Component id="password" alignment="0" min="-2" pref="383" max="-2" attributes="0"/>
+                                          <Component id="pass" alignment="0" min="-2" pref="383" max="-2" attributes="0"/>
                                           <Component id="jLabel18" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="fullname" alignment="0" min="-2" pref="383" max="-2" attributes="0"/>
+                                          <Component id="name" alignment="0" min="-2" pref="383" max="-2" attributes="0"/>
                                           <Component id="username" alignment="0" min="-2" pref="383" max="-2" attributes="0"/>
                                           <Component id="jLabel12" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="phone" alignment="0" min="-2" pref="383" max="-2" attributes="0"/>
@@ -168,12 +168,12 @@
                                           <Group type="102" alignment="1" attributes="0">
                                               <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="idcust" min="-2" pref="34" max="-2" attributes="0"/>
+                                              <Component id="nik" min="-2" pref="34" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="1" attributes="0">
                                               <Component id="jLabel8" min="-2" pref="17" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="fullname" min="-2" pref="34" max="-2" attributes="0"/>
+                                              <Component id="name" min="-2" pref="34" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
@@ -190,7 +190,7 @@
                               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                               <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="password" min="-2" pref="34" max="-2" attributes="0"/>
+                              <Component id="pass" min="-2" pref="34" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
@@ -302,7 +302,7 @@
                 <Property name="text" type="java.lang.String" value="Identity Card Number :"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="idcust">
+            <Component class="javax.swing.JTextField" name="nik">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="18" style="0"/>
@@ -322,7 +322,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="idcustActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nikActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel8">
@@ -336,7 +336,7 @@
                 <Property name="text" type="java.lang.String" value="Full Name :"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="fullname">
+            <Component class="javax.swing.JTextField" name="name">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="18" style="0"/>
@@ -356,7 +356,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fullnameActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nameActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel9">
@@ -496,7 +496,7 @@
                 <Property name="text" type="java.lang.String" value="Password :"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="password">
+            <Component class="javax.swing.JTextField" name="pass">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="18" style="0"/>
@@ -516,7 +516,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="passwordActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="passActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel19">

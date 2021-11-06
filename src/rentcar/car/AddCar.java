@@ -206,6 +206,7 @@ public class AddCar extends javax.swing.JFrame {
         rdAvailable.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         rdAvailable.setForeground(new java.awt.Color(0, 153, 153));
         rdAvailable.setText("Available");
+        rdAvailable.setActionCommand("AVAILABLE");
         rdAvailable.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rdAvailableActionPerformed(evt);
@@ -215,6 +216,7 @@ public class AddCar extends javax.swing.JFrame {
         rdUnAvailable.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         rdUnAvailable.setForeground(new java.awt.Color(0, 153, 153));
         rdUnAvailable.setText("Booked");
+        rdUnAvailable.setActionCommand("BOOKED");
         rdUnAvailable.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rdUnAvailableActionPerformed(evt);
@@ -310,7 +312,7 @@ public class AddCar extends javax.swing.JFrame {
                         .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(rdAvailable)
                             .addComponent(rdUnAvailable))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 180, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 183, Short.MAX_VALUE)
                 .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLogin2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -322,6 +324,11 @@ public class AddCar extends javax.swing.JFrame {
         listorders.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         listorders.setForeground(new java.awt.Color(0, 83, 131));
         listorders.setText("List Orders");
+        listorders.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listordersMouseClicked(evt);
+            }
+        });
         kGradientPanel1.add(listorders, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 187, 57));
 
         employees.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -467,7 +474,7 @@ public class AddCar extends javax.swing.JFrame {
 
             String status = statusGroup.getSelection().getActionCommand();
 
-            String insertQuery = "INSERT INTO tb_mobil VALUES ('0','"
+            String insertQuery = "INSERT INTO tb_mobil VALUES ('1','"
                     + merk.getText() + "','"
                     + fee.getText() + "','"
                     + status + "','"
@@ -488,14 +495,6 @@ public class AddCar extends javax.swing.JFrame {
         // TODO add your handling code here:
         menuNav.car(this);
     }//GEN-LAST:event_btnLogin2ActionPerformed
-
-    private void rdAvailableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdAvailableActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rdAvailableActionPerformed
-
-    private void rdUnAvailableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdUnAvailableActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rdUnAvailableActionPerformed
 
     private void dashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardMouseClicked
         // TODO add your handling code here:
@@ -521,6 +520,20 @@ public class AddCar extends javax.swing.JFrame {
         // TODO add your handling code here:
 
     }//GEN-LAST:event_tipeMouseClicked
+
+    private void rdAvailableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdAvailableActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rdAvailableActionPerformed
+
+    private void rdUnAvailableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdUnAvailableActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rdUnAvailableActionPerformed
+
+    private void listordersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listordersMouseClicked
+        // TODO add your handling code here:
+        menuNav.ListOrder(this);
+
+    }//GEN-LAST:event_listordersMouseClicked
     private void loadDataType() {
         try {
             tipe.removeAllItems();

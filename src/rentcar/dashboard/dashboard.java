@@ -318,16 +318,31 @@ public class dashboard extends javax.swing.JFrame {
         listorders.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         listorders.setForeground(new java.awt.Color(0, 83, 131));
         listorders.setText("List Orders");
+        listorders.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listordersMouseClicked(evt);
+            }
+        });
         kGradientPanel1.add(listorders, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 187, 57));
 
         employees.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         employees.setForeground(new java.awt.Color(0, 83, 131));
         employees.setText("Employees");
+        employees.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                employeesMouseClicked(evt);
+            }
+        });
         kGradientPanel1.add(employees, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 350, 187, 57));
 
         customers.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         customers.setForeground(new java.awt.Color(0, 83, 131));
         customers.setText("Customers");
+        customers.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                customersMouseClicked(evt);
+            }
+        });
         kGradientPanel1.add(customers, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 420, 187, 57));
 
         financial.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -406,6 +421,11 @@ public class dashboard extends javax.swing.JFrame {
         jLabel23.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(0, 83, 131));
         jLabel23.setText("Role");
+        jLabel23.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel23MouseClicked(evt);
+            }
+        });
         kGradientPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 560, 187, 57));
 
         jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rentcar/images/logo-1.png"))); // NOI18N
@@ -445,6 +465,27 @@ public class dashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
         menuNav.car(this);
     }//GEN-LAST:event_carsMouseClicked
+
+    private void jLabel23MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel23MouseClicked
+        // TODO add your handling code here:
+        menuNav.Role(this);
+    }//GEN-LAST:event_jLabel23MouseClicked
+
+    private void customersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customersMouseClicked
+        // TODO add your handling code here:
+        menuNav.customer(this);
+    }//GEN-LAST:event_customersMouseClicked
+
+    private void employeesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_employeesMouseClicked
+        // TODO add your handling code here:
+        menuNav.employee(this);
+    }//GEN-LAST:event_employeesMouseClicked
+
+    private void listordersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listordersMouseClicked
+        // TODO add your handling code here:
+        menuNav.ListOrder(this);
+
+    }//GEN-LAST:event_listordersMouseClicked
 
     /**
      * @param args the command line arguments

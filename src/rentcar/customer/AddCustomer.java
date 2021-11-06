@@ -26,6 +26,7 @@ public class AddCustomer extends javax.swing.JFrame {
     /**
      * Creates new form AddCustomer
      */
+    
     public AddCustomer() {
         initComponents();
         DbConnection DB = new DbConnection();
@@ -54,9 +55,9 @@ public class AddCustomer extends javax.swing.JFrame {
         userLogin = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        idcust = new javax.swing.JTextField();
+        nik = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        fullname = new javax.swing.JTextField();
+        name = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         email = new javax.swing.JTextField();
         btnLogin1 = new com.k33ptoo.components.KButton();
@@ -64,7 +65,7 @@ public class AddCustomer extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         username = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
-        password = new javax.swing.JTextField();
+        pass = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
         phone = new javax.swing.JTextField();
         listorders = new javax.swing.JLabel();
@@ -139,13 +140,13 @@ public class AddCustomer extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(75, 160, 175));
         jLabel7.setText("Identity Card Number :");
 
-        idcust.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        idcust.setForeground(new java.awt.Color(75, 160, 175));
-        idcust.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(75, 160, 175)));
-        idcust.setSelectionColor(new java.awt.Color(0, 153, 153));
-        idcust.addActionListener(new java.awt.event.ActionListener() {
+        nik.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        nik.setForeground(new java.awt.Color(75, 160, 175));
+        nik.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(75, 160, 175)));
+        nik.setSelectionColor(new java.awt.Color(0, 153, 153));
+        nik.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                idcustActionPerformed(evt);
+                nikActionPerformed(evt);
             }
         });
 
@@ -153,13 +154,13 @@ public class AddCustomer extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(75, 160, 175));
         jLabel8.setText("Full Name :");
 
-        fullname.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        fullname.setForeground(new java.awt.Color(75, 160, 175));
-        fullname.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(75, 160, 175)));
-        fullname.setSelectionColor(new java.awt.Color(0, 153, 153));
-        fullname.addActionListener(new java.awt.event.ActionListener() {
+        name.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        name.setForeground(new java.awt.Color(75, 160, 175));
+        name.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(75, 160, 175)));
+        name.setSelectionColor(new java.awt.Color(0, 153, 153));
+        name.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fullnameActionPerformed(evt);
+                nameActionPerformed(evt);
             }
         });
 
@@ -223,13 +224,13 @@ public class AddCustomer extends javax.swing.JFrame {
         jLabel18.setForeground(new java.awt.Color(75, 160, 175));
         jLabel18.setText("Password :");
 
-        password.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        password.setForeground(new java.awt.Color(75, 160, 175));
-        password.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(75, 160, 175)));
-        password.setSelectionColor(new java.awt.Color(0, 153, 153));
-        password.addActionListener(new java.awt.event.ActionListener() {
+        pass.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        pass.setForeground(new java.awt.Color(75, 160, 175));
+        pass.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(75, 160, 175)));
+        pass.setSelectionColor(new java.awt.Color(0, 153, 153));
+        pass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordActionPerformed(evt);
+                passActionPerformed(evt);
             }
         });
 
@@ -276,16 +277,16 @@ public class AddCustomer extends javax.swing.JFrame {
                             .addGroup(kGradientPanel2Layout.createSequentialGroup()
                                 .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel7)
-                                    .addComponent(idcust, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(nik, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel9)
                                     .addComponent(btnLogin2, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel18))
                                 .addGap(80, 80, 80)
                                 .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel8)
-                                    .addComponent(fullname, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel12)
                                     .addComponent(phone, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -316,11 +317,11 @@ public class AddCustomer extends javax.swing.JFrame {
                                     .addGroup(kGradientPanel2Layout.createSequentialGroup()
                                         .addComponent(jLabel7)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(idcust, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(nik, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(kGradientPanel2Layout.createSequentialGroup()
                                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(fullname, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(34, 34, 34)
                                 .addComponent(jLabel9)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -332,7 +333,7 @@ public class AddCustomer extends javax.swing.JFrame {
                         .addGap(28, 28, 28)
                         .addComponent(jLabel18)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(kGradientPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel19)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -467,16 +468,16 @@ public class AddCustomer extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
-      
+
     }//GEN-LAST:event_jLabel11MouseClicked
 
-    private void idcustActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idcustActionPerformed
+    private void nikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nikActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_idcustActionPerformed
+    }//GEN-LAST:event_nikActionPerformed
 
-    private void fullnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fullnameActionPerformed
+    private void nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_fullnameActionPerformed
+    }//GEN-LAST:event_nameActionPerformed
 
     private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
         // TODO add your handling code here:
@@ -484,23 +485,22 @@ public class AddCustomer extends javax.swing.JFrame {
 
     private void btnLogin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogin1ActionPerformed
         // TODO add your handling code here:
-         try {
-            
+        try {
 
+           int number = Integer.parseInt(nik.getText());
             String insertQuery = "INSERT INTO tb_customer VALUES ('"
-                    + idcust.getText() + "','"
-                    + fullname.getText() + "','"
-                    + email.getText() + "','"
-                    + username.getText() + "','"
-                    + password.getText() + "','"
+                    + number + "', '"
+                    + name.getText() + "', '"
+                    + email.getText() + "', '"
+                    + username.getText() + "', '"
+                    + pass.getText() + "', '"
                     + phone.getText() + "')";
-            
+
             PreparedStatement prepare = con.prepareStatement(insertQuery);
             prepare.execute();
-            JOptionPane.showMessageDialog(this, "Customer Added");
-            menuNav.car(this);
-            
-            
+            JOptionPane.showMessageDialog(this, "Successfully added new customer");
+            menuNav.login(this);
+
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
             System.err.println(ex.getMessage());
@@ -521,9 +521,9 @@ public class AddCustomer extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_usernameActionPerformed
 
-    private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
+    private void passActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_passwordActionPerformed
+    }//GEN-LAST:event_passActionPerformed
 
     private void phoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneActionPerformed
         // TODO add your handling code here:
@@ -573,8 +573,6 @@ public class AddCustomer extends javax.swing.JFrame {
     private javax.swing.JTextField email;
     private javax.swing.JLabel employees;
     private javax.swing.JLabel financial;
-    private javax.swing.JTextField fullname;
-    private javax.swing.JTextField idcust;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -601,7 +599,9 @@ public class AddCustomer extends javax.swing.JFrame {
     private keeptoo.KGradientPanel kGradientPanel1;
     private keeptoo.KGradientPanel kGradientPanel2;
     private javax.swing.JLabel listorders;
-    private javax.swing.JTextField password;
+    private javax.swing.JTextField name;
+    private javax.swing.JTextField nik;
+    private javax.swing.JTextField pass;
     private javax.swing.JTextField phone;
     private javax.swing.JLabel userLogin;
     private javax.swing.JTextField username;

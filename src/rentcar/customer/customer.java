@@ -5,6 +5,13 @@
  */
 package rentcar.customer;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import rentcar.DbConnection;
 import rentcar.MenuNavigation;
 
 /**
@@ -16,11 +23,19 @@ public class customer extends javax.swing.JFrame {
     /**
      * Creates new form customer
      */
+    private Connection con;
+    private Statement statment;
     private MenuNavigation menuNav;
 
     public customer() {
+        DbConnection DB = new DbConnection();
+        DB.Connect();
+        con = DB.conn;
+        statment = DB.stmt;
         this.menuNav = new MenuNavigation();
         initComponents();
+        loadTotal();
+        loadData();
     }
 
     /**
@@ -41,10 +56,6 @@ public class customer extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         kGradientPanel1 = new keeptoo.KGradientPanel();
         kGradientPanel2 = new keeptoo.KGradientPanel();
-        kGradientPanel5 = new keeptoo.KGradientPanel();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel24 = new javax.swing.JLabel();
@@ -52,8 +63,12 @@ public class customer extends javax.swing.JFrame {
         userLogin = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         btnLogin = new com.k33ptoo.components.KButton();
+        jPanel4 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        totalCust = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        custList = new javax.swing.JTable();
         listorders = new javax.swing.JLabel();
         financial = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -166,53 +181,6 @@ public class customer extends javax.swing.JFrame {
         kGradientPanel2.setkStartColor(new java.awt.Color(255, 255, 255));
         kGradientPanel2.setPreferredSize(new java.awt.Dimension(1376, 768));
 
-        kGradientPanel5.setkEndColor(new java.awt.Color(246, 245, 245));
-        kGradientPanel5.setkStartColor(new java.awt.Color(246, 245, 245));
-
-        jPanel1.setBackground(new java.awt.Color(75, 160, 175));
-        jPanel1.setForeground(new java.awt.Color(0, 83, 131));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 238, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 11, Short.MAX_VALUE)
-        );
-
-        jLabel8.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
-        jLabel8.setText("1");
-
-        jLabel7.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel7.setText("Total Customers");
-
-        javax.swing.GroupLayout kGradientPanel5Layout = new javax.swing.GroupLayout(kGradientPanel5);
-        kGradientPanel5.setLayout(kGradientPanel5Layout);
-        kGradientPanel5Layout.setHorizontalGroup(
-            kGradientPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(kGradientPanel5Layout.createSequentialGroup()
-                .addGap(99, 99, 99)
-                .addComponent(jLabel8))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel7)
-                .addGap(49, 49, 49))
-        );
-        kGradientPanel5Layout.setVerticalGroup(
-            kGradientPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(kGradientPanel5Layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addComponent(jLabel8)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel7)
-                .addGap(21, 21, 21))
-        );
-
         jLabel29.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel29.setForeground(new java.awt.Color(75, 160, 175));
         jLabel29.setText("Customer");
@@ -263,7 +231,55 @@ public class customer extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jPanel4.setPreferredSize(new java.awt.Dimension(236, 79));
+
+        jPanel5.setBackground(new java.awt.Color(75, 160, 175));
+        jPanel5.setPreferredSize(new java.awt.Dimension(8, 0));
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 8, Short.MAX_VALUE)
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 79, Short.MAX_VALUE)
+        );
+
+        jLabel7.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel7.setText("Customer Total");
+
+        totalCust.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 228, Short.MAX_VALUE))
+            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel4Layout.createSequentialGroup()
+                    .addGap(19, 19, 19)
+                    .addComponent(jLabel7)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                    .addComponent(totalCust, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(19, 19, 19)))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel4Layout.createSequentialGroup()
+                    .addGap(28, 28, 28)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(totalCust, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel7))
+                    .addContainerGap(29, Short.MAX_VALUE)))
+        );
+
+        custList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -271,10 +287,10 @@ public class customer extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "NO", "name", "email", "phone"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(custList);
 
         javax.swing.GroupLayout kGradientPanel2Layout = new javax.swing.GroupLayout(kGradientPanel2);
         kGradientPanel2.setLayout(kGradientPanel2Layout);
@@ -296,19 +312,18 @@ public class customer extends javax.swing.JFrame {
                     .addGroup(kGradientPanel2Layout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel24)
                             .addGroup(kGradientPanel2Layout.createSequentialGroup()
-                                .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel24))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 767, Short.MAX_VALUE))
-                            .addGroup(kGradientPanel2Layout.createSequentialGroup()
-                                .addComponent(kGradientPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(86, 86, 86)
-                                .addComponent(jScrollPane1))))
+                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(55, 55, 55)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 651, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(kGradientPanel2Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(483, 483, 483))
+                        .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(66, 66, 66)))
+                .addGap(417, 417, 417))
         );
         kGradientPanel2Layout.setVerticalGroup(
             kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -327,11 +342,11 @@ public class customer extends javax.swing.JFrame {
                 .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14)
                 .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(28, 28, 28)
                 .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(kGradientPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(252, Short.MAX_VALUE))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(312, Short.MAX_VALUE))
         );
 
         kGradientPanel1.add(kGradientPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 0, 1470, 780));
@@ -339,6 +354,11 @@ public class customer extends javax.swing.JFrame {
         listorders.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         listorders.setForeground(new java.awt.Color(0, 83, 131));
         listorders.setText("List Orders");
+        listorders.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listordersMouseClicked(evt);
+            }
+        });
         kGradientPanel1.add(listorders, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 187, 57));
 
         financial.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -381,6 +401,11 @@ public class customer extends javax.swing.JFrame {
         dashboard.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         dashboard.setForeground(new java.awt.Color(0, 83, 131));
         dashboard.setText("Dashboard");
+        dashboard.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                dashboardMouseClicked(evt);
+            }
+        });
         kGradientPanel1.add(dashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 187, 57));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rentcar/images/logo-1.png"))); // NOI18N
@@ -402,6 +427,9 @@ public class customer extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 carsMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                carsMouseEntered(evt);
+            }
         });
         kGradientPanel1.add(cars, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 280, 187, 57));
 
@@ -414,11 +442,21 @@ public class customer extends javax.swing.JFrame {
         employees.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         employees.setForeground(new java.awt.Color(0, 83, 131));
         employees.setText("Employees");
+        employees.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                employeesMouseClicked(evt);
+            }
+        });
         kGradientPanel1.add(employees, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 350, 202, 57));
 
         jLabel23.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(0, 83, 131));
         jLabel23.setText("Role");
+        jLabel23.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel23MouseClicked(evt);
+            }
+        });
         kGradientPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 560, 187, 57));
 
         jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rentcar/images/logo-1.png"))); // NOI18N
@@ -470,7 +508,7 @@ public class customer extends javax.swing.JFrame {
 
     private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_jLabel11MouseClicked
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
@@ -482,6 +520,34 @@ public class customer extends javax.swing.JFrame {
         // TODO add your handling code here:
         menuNav.car(this);
     }//GEN-LAST:event_carsMouseClicked
+
+    private void jLabel23MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel23MouseClicked
+        // TODO add your handling code here:
+        menuNav.Role(this);
+
+    }//GEN-LAST:event_jLabel23MouseClicked
+
+    private void listordersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listordersMouseClicked
+        // TODO add your handling code here:
+        menuNav.ListOrder(this);
+
+    }//GEN-LAST:event_listordersMouseClicked
+
+    private void carsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_carsMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_carsMouseEntered
+
+    private void employeesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_employeesMouseClicked
+        // TODO add your handling code here:
+        menuNav.employee(this);
+
+    }//GEN-LAST:event_employeesMouseClicked
+
+    private void dashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardMouseClicked
+        // TODO add your handling code here:
+        menuNav.adminDashboard(this);
+
+    }//GEN-LAST:event_dashboardMouseClicked
 
     /**
      * @param args the command line arguments
@@ -518,9 +584,49 @@ public class customer extends javax.swing.JFrame {
         });
     }
 
+    private void loadTotal() {
+        try {
+            String selectQuery = "SELECT *, Count(*) as count FROM tb_customer";
+            ResultSet result = statment.executeQuery(selectQuery);
+            while (result.next()) {
+                if (result.getString("count") != null) {
+
+                    totalCust.setText(result.getString("count"));
+                } else {
+                    totalCust.setText("0");
+                }
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }
+
+    private void loadData() {
+        try {
+            DefaultTableModel model = (DefaultTableModel) custList.getModel();
+            // clear data
+            model.setRowCount(0);
+            String selectQuery = "SELECT * FROM tb_customer";
+            ResultSet result = statment.executeQuery(selectQuery);
+            while (result.next()) {
+                model.addRow(new Object[]{
+                    result.getInt("id_customer"),
+                    result.getString("nama"),
+                    result.getString("email"),
+                    result.getString("username"),
+                    result.getString("password"),
+                    result.getString("phone")});
+
+                custList.setModel(model);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.k33ptoo.components.KButton btnLogin;
     private javax.swing.JLabel cars;
+    private javax.swing.JTable custList;
     private javax.swing.JLabel customers;
     private javax.swing.JLabel dashboard;
     private javax.swing.JTextField email1;
@@ -545,19 +651,18 @@ public class customer extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private keeptoo.KGradientPanel kGradientPanel1;
     private keeptoo.KGradientPanel kGradientPanel2;
     private keeptoo.KGradientPanel kGradientPanel3;
-    private keeptoo.KGradientPanel kGradientPanel5;
     private javax.swing.JLabel listorders;
     private javax.swing.JTextField password;
+    private javax.swing.JLabel totalCust;
     private javax.swing.JLabel userLogin;
     // End of variables declaration//GEN-END:variables
 }

@@ -8,6 +8,7 @@ package rentcar;
 import java.awt.Window;
 import javax.swing.JFrame;
 import rentcar.auth.Login;
+import rentcar.auth.LoginCust;
 import rentcar.auth.Register;
 import rentcar.car.AddCar;
 import rentcar.car.CarMaster;
@@ -16,10 +17,16 @@ import rentcar.role.AddRole;
 import rentcar.car.AddCarType;
 import rentcar.customer.customer;
 import rentcar.dashboard.dashboard;
+import rentcar.dashboard.dasboardCust;
 import rentcar.employee.AddEmployee;
 import rentcar.customer.AddCustomer;
 import rentcar.employee.Employee;
 import rentcar.order.ListOrder;
+import rentcar.history.DetailHistory;
+import rentcar.history.ListHistory;
+import rentcar.history.PaymentPage;
+import rentcar.history.ThankYouPage;
+import rentcar.order.OrderCust;
 
 /**
  *
@@ -33,9 +40,21 @@ public class MenuNavigation {
         current.setVisible(false);
     }
 
+    public void dashboardCust(Window current) {
+        dasboardCust dashboardCust = new dasboardCust();
+        dashboardCust.setVisible(true);
+        current.setVisible(false);
+    }
+
     public void login(Window current) {
         Login login = new Login();
         login.setVisible(true);
+        current.setVisible(false);
+    }
+
+    public void loginCust(Window current) {
+        LoginCust loginCust = new LoginCust();
+        loginCust.setVisible(true);
         current.setVisible(false);
     }
 
@@ -104,6 +123,42 @@ public class MenuNavigation {
     public void order(Window current) {
         ListOrder order = new ListOrder();
         order.setVisible(true);
+        current.setVisible(false);
+    }
+
+    public void DetailHistory(Window current) {
+        DetailHistory DetailHistory = new DetailHistory();
+        DetailHistory.setVisible(true);
+        current.setVisible(false);
+    }
+
+    public void ListHistory(Window current) {
+        ListHistory ListHistory = new ListHistory();
+        ListHistory.setVisible(true);
+        current.setVisible(false);
+    }
+
+    public void PaymentPage(Window current) {
+        PaymentPage PaymentPage = new PaymentPage();
+        PaymentPage.setVisible(true);
+        current.setVisible(false);
+    }
+
+    public void ThankYouPage(Window current) {
+        ThankYouPage ThankYouPage = new ThankYouPage();
+        ThankYouPage.setVisible(true);
+        current.setVisible(false);
+    }
+
+    public void OrderCust(Window current) {
+        OrderCust OrderCust = new OrderCust();
+        OrderCust.setVisible(true);
+        current.setVisible(false);
+    }
+
+    public void ListOrder(Window current) {
+        ListOrder ListOrder = new ListOrder();
+        ListOrder.setVisible(true);
         current.setVisible(false);
     }
 

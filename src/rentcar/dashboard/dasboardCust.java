@@ -6,6 +6,8 @@
 package rentcar.dashboard;
 
 import javax.swing.JOptionPane;
+import rentcar.MenuNavigation;
+import rentcar.UserSession;
 
 /**
  *
@@ -16,8 +18,15 @@ public class dasboardCust extends javax.swing.JFrame {
     /**
      * Creates new form dasboardCust
      */
+    
+    private MenuNavigation menuNav;
     public dasboardCust() {
         initComponents();
+        
+        this.menuNav = new MenuNavigation(); 
+        
+        String ID = UserSession.getUserLogin();
+        userLogin.setText(ID);
     }
 
     /**
@@ -300,20 +309,15 @@ public class dasboardCust extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1377, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(kGradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1357, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(kGradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1357, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 790, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addGap(0, 11, Short.MAX_VALUE)
-                    .addComponent(kGradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 779, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(kGradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 779, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 11, Short.MAX_VALUE))
         );
 
         pack();
@@ -322,16 +326,17 @@ public class dasboardCust extends javax.swing.JFrame {
     private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
         // TODO add your handling code here:
         JOptionPane.showMessageDialog(null, "Logout Success");
-//        MenuNavigation.login(this);
+        menuNav.login(this);
     }//GEN-LAST:event_jLabel11MouseClicked
 
     private void carsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_carsMouseClicked
         // TODO add your handling code here:
-//        menuNav.car(this);
+        menuNav.OrderCust(this);
     }//GEN-LAST:event_carsMouseClicked
 
     private void cars1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cars1MouseClicked
         // TODO add your handling code here:
+        menuNav.ListHistory(this);
     }//GEN-LAST:event_cars1MouseClicked
 
     /**

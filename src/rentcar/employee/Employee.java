@@ -26,6 +26,7 @@ public class Employee extends javax.swing.JFrame {
     private Connection con;
     private Statement statment;
     private MenuNavigation menuNav;
+
     public Employee() {
         DbConnection DB = new DbConnection();
         DB.Connect();
@@ -34,6 +35,7 @@ public class Employee extends javax.swing.JFrame {
         this.menuNav = new MenuNavigation();
         initComponents();
         loadData();
+        loadTotal();
     }
 
     /**
@@ -48,9 +50,9 @@ public class Employee extends javax.swing.JFrame {
         kGradientPanel1 = new keeptoo.KGradientPanel();
         kGradientPanel2 = new keeptoo.KGradientPanel();
         kGradientPanel5 = new keeptoo.KGradientPanel();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
+        totalEm = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
         jLabel29 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel24 = new javax.swing.JLabel();
@@ -96,48 +98,46 @@ public class Employee extends javax.swing.JFrame {
         kGradientPanel5.setkEndColor(new java.awt.Color(246, 245, 245));
         kGradientPanel5.setkStartColor(new java.awt.Color(246, 245, 245));
 
-        jPanel1.setBackground(new java.awt.Color(75, 160, 175));
-        jPanel1.setForeground(new java.awt.Color(0, 83, 131));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 238, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 11, Short.MAX_VALUE)
-        );
-
-        jLabel8.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
-        jLabel8.setText("1");
+        totalEm.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
 
         jLabel7.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel7.setText("Total Employee");
+        jLabel7.setText("Employee Total");
+
+        jPanel4.setBackground(new java.awt.Color(75, 160, 175));
+        jPanel4.setPreferredSize(new java.awt.Dimension(8, 0));
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 8, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout kGradientPanel5Layout = new javax.swing.GroupLayout(kGradientPanel5);
         kGradientPanel5.setLayout(kGradientPanel5Layout);
         kGradientPanel5Layout.setHorizontalGroup(
             kGradientPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(kGradientPanel5Layout.createSequentialGroup()
-                .addGap(99, 99, 99)
-                .addComponent(jLabel8))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel5Layout.createSequentialGroup()
-                .addContainerGap()
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel7)
-                .addGap(49, 49, 49))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addComponent(totalEm, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
         kGradientPanel5Layout.setVerticalGroup(
             kGradientPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(kGradientPanel5Layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addComponent(jLabel8)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel7)
-                .addGap(21, 21, 21))
+                .addGap(23, 23, 23)
+                .addGroup(kGradientPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(totalEm, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addContainerGap(34, Short.MAX_VALUE))
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
         );
 
         jLabel29.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
@@ -229,6 +229,7 @@ public class Employee extends javax.swing.JFrame {
                             .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel24)
                             .addGroup(kGradientPanel2Layout.createSequentialGroup()
+                                .addGap(15, 15, 15)
                                 .addComponent(kGradientPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 651, javax.swing.GroupLayout.PREFERRED_SIZE)))))
@@ -253,8 +254,8 @@ public class Employee extends javax.swing.JFrame {
                 .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(kGradientPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(kGradientPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(322, Short.MAX_VALUE))
         );
 
@@ -263,11 +264,21 @@ public class Employee extends javax.swing.JFrame {
         listorders.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         listorders.setForeground(new java.awt.Color(0, 83, 131));
         listorders.setText("List Orders");
+        listorders.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listordersMouseClicked(evt);
+            }
+        });
         kGradientPanel1.add(listorders, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 187, 57));
 
         customers.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         customers.setForeground(new java.awt.Color(0, 83, 131));
         customers.setText("Customers");
+        customers.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                customersMouseClicked(evt);
+            }
+        });
         kGradientPanel1.add(customers, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 420, 187, 57));
 
         financial.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -309,6 +320,11 @@ public class Employee extends javax.swing.JFrame {
         dashboard.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         dashboard.setForeground(new java.awt.Color(0, 83, 131));
         dashboard.setText("Dashboard");
+        dashboard.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                dashboardMouseClicked(evt);
+            }
+        });
         kGradientPanel1.add(dashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 187, 57));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rentcar/images/logo-1.png"))); // NOI18N
@@ -345,6 +361,11 @@ public class Employee extends javax.swing.JFrame {
         jLabel23.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(0, 83, 131));
         jLabel23.setText("Role");
+        jLabel23.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel23MouseClicked(evt);
+            }
+        });
         kGradientPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 560, 187, 57));
 
         jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rentcar/images/logo-1.png"))); // NOI18N
@@ -397,20 +418,45 @@ public class Employee extends javax.swing.JFrame {
         // TODO add your handling code here:
         menuNav.car(this);
     }//GEN-LAST:event_carsMouseClicked
-    
+
+    private void customersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customersMouseClicked
+        // TODO add your handling code here:
+        menuNav.customer(this);
+    }//GEN-LAST:event_customersMouseClicked
+
+    private void listordersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listordersMouseClicked
+        // TODO add your handling code here:
+        menuNav.ListOrder(this);
+
+    }//GEN-LAST:event_listordersMouseClicked
+
+    private void jLabel23MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel23MouseClicked
+        // TODO add your handling code here:        
+        menuNav.Role(this);
+
+    }//GEN-LAST:event_jLabel23MouseClicked
+
+    private void dashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardMouseClicked
+        // TODO add your handling code here:
+        menuNav.adminDashboard(this);
+
+    }//GEN-LAST:event_dashboardMouseClicked
+
     private void loadData() {
         try {
             DefaultTableModel model = (DefaultTableModel) employeeList.getModel();
             // clear data
             model.setRowCount(0);
-            String selectQuery = "SELECT * FROM tb_user";
+            String selectQuery = "SELECT * FROM tb_employe";
             ResultSet result = statment.executeQuery(selectQuery);
             while (result.next()) {
                 model.addRow(new Object[]{
-                    result.getInt("id_user"),
-                    result.getString("fullname"),
-                    result.getString("email"),
-                    result.getString("no_telp")});
+                    result.getInt("id_employe"),
+                    result.getString("nama"),
+                    result.getString("tanggal_lahir"),
+                    result.getString("username"),
+                    result.getString("password"),
+                    result.getString("email")});
 
                 employeeList.setModel(model);
             }
@@ -418,6 +464,24 @@ public class Employee extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
     }
+
+    private void loadTotal() {
+        try {
+            String selectQuery = "SELECT *, Count(*) as count FROM tb_employe";
+            ResultSet result = statment.executeQuery(selectQuery);
+            while (result.next()) {
+                if (result.getString("count") != null) {
+
+                    totalEm.setText(result.getString("count"));
+                } else {
+                    totalEm.setText("0");
+                }
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -477,16 +541,16 @@ public class Employee extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private keeptoo.KGradientPanel kGradientPanel1;
     private keeptoo.KGradientPanel kGradientPanel2;
     private keeptoo.KGradientPanel kGradientPanel5;
     private javax.swing.JLabel listorders;
+    private javax.swing.JLabel totalEm;
     private javax.swing.JLabel userLogin;
     // End of variables declaration//GEN-END:variables
 }

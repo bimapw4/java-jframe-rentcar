@@ -19,7 +19,7 @@ import rentcar.UserSession;
  *
  * @author Admin
  */
-public class Login extends javax.swing.JFrame {
+public class LoginCust extends javax.swing.JFrame {
 
     /**
      * Creates new form Login
@@ -28,7 +28,7 @@ public class Login extends javax.swing.JFrame {
     private Statement statment;
     private MenuNavigation menuNav;
 
-    public Login() {
+    public LoginCust() {
         initComponents();
         DbConnection DB = new DbConnection();
         DB.Connect();
@@ -61,6 +61,9 @@ public class Login extends javax.swing.JFrame {
         password = new javax.swing.JPasswordField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -75,7 +78,7 @@ public class Login extends javax.swing.JFrame {
         kGradientPanel2.setkEndColor(new java.awt.Color(208, 233, 255));
         kGradientPanel2.setkStartColor(new java.awt.Color(208, 233, 255));
 
-        btnLogin.setText("Sign In as Employee");
+        btnLogin.setText("Sign In");
         btnLogin.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnLogin.setkBackGroundColor(new java.awt.Color(75, 160, 175));
         btnLogin.setkEndColor(new java.awt.Color(255, 255, 255));
@@ -94,7 +97,7 @@ public class Login extends javax.swing.JFrame {
         jLabel1.setText("Sign In");
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel2.setText("Are you a customer? sign in");
+        jLabel2.setText("Don’t have an account? Sign Up ");
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(75, 160, 175));
@@ -153,40 +156,73 @@ public class Login extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(75, 160, 175));
         jLabel8.setText("Password :");
 
+        jLabel9.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel9.setText("Are you an Employee? Sign In");
+
+        jLabel10.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(75, 160, 175));
+        jLabel10.setText("here");
+        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel10MouseClicked(evt);
+            }
+        });
+
+        jLabel11.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(75, 160, 175));
+        jLabel11.setText("OR");
+        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel11MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout kGradientPanel2Layout = new javax.swing.GroupLayout(kGradientPanel2);
         kGradientPanel2.setLayout(kGradientPanel2Layout);
         kGradientPanel2Layout.setHorizontalGroup(
             kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel2Layout.createSequentialGroup()
-                .addGap(0, 67, Short.MAX_VALUE)
-                .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel7)
-                    .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(password)
-                        .addComponent(username, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE)))
-                .addGap(45, 45, 45))
             .addGroup(kGradientPanel2Layout.createSequentialGroup()
                 .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(kGradientPanel2Layout.createSequentialGroup()
-                            .addGap(21, 21, 21)
-                            .addComponent(jLabel1)
-                            .addGap(210, 210, 210)))
                     .addGroup(kGradientPanel2Layout.createSequentialGroup()
-                        .addGap(150, 150, 150)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3)))
-                .addContainerGap(161, Short.MAX_VALUE))
+                        .addGap(21, 21, 21)
+                        .addComponent(jLabel1))
+                    .addGroup(kGradientPanel2Layout.createSequentialGroup()
+                        .addGap(190, 190, 190)
+                        .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel2Layout.createSequentialGroup()
+                .addGap(0, 63, Short.MAX_VALUE)
+                .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel2Layout.createSequentialGroup()
+                        .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel7)
+                            .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(password)
+                                .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(49, 49, 49))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addGap(234, 234, 234))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel2Layout.createSequentialGroup()
+                        .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(kGradientPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel10)
+                                .addGap(4, 4, 4))
+                            .addGroup(kGradientPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(2, 2, 2)
+                                .addComponent(jLabel3)))
+                        .addGap(145, 145, 145))))
         );
         kGradientPanel2Layout.setVerticalGroup(
             kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel2Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addGap(37, 37, 37)
                 .addComponent(jLabel7)
                 .addGap(2, 2, 2)
                 .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -194,13 +230,19 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addGap(32, 32, 32)
                 .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3))
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel10))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout kGradientPanel1Layout = new javax.swing.GroupLayout(kGradientPanel1);
@@ -230,7 +272,7 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addGap(36, 36, 36)
                 .addComponent(kGradientPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(175, Short.MAX_VALUE))
+                .addContainerGap(127, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -251,7 +293,7 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
         //private void login() {
         // this.menuNav.loginPage(this);
-        String aw = "SELECT * FROM tb_employe WHERE username='" + username.getText() + "' AND password='" + password.getText() + "'";
+        String aw = "SELECT * FROM tb_customer WHERE username='" + username.getText() + "' AND password='" + password.getText() + "'";
 
         try {
             java.sql.PreparedStatement pst = con.prepareStatement(aw);
@@ -261,13 +303,8 @@ public class Login extends javax.swing.JFrame {
                 if (username.getText().equals(rs.getString("username")) && password.getText().equals(rs.getString("password"))) {
                     boolean isLogin = true;
                     UserSession.setUserLogin(rs.getString("nama"));
-                    if (rs.getString("id_role").equals("1")) {
-                        JOptionPane.showMessageDialog(null, "Success Login");
-                        menuNav.adminDashboard(this);
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Success Login");
-                        menuNav.dashboardCust(this);
-                    }
+                    JOptionPane.showMessageDialog(null, "Success Login");
+                    menuNav.dashboardCust(this);
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Invalid Username/Password!");
@@ -280,7 +317,7 @@ public class Login extends javax.swing.JFrame {
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         // TODO add your handling code here:
-        menuNav.loginCust(this);
+        menuNav.register(this);
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void usernameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usernameMouseClicked
@@ -312,6 +349,15 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_passwordActionPerformed
 
+    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
+        // TODO add your handling code here:
+        menuNav.login(this);
+    }//GEN-LAST:event_jLabel10MouseClicked
+
+    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel11MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -329,20 +375,21 @@ public class Login extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginCust.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginCust.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginCust.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginCust.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Login().setVisible(true);
+                new LoginCust().setVisible(true);
             }
         });
     }
@@ -350,12 +397,15 @@ public class Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.k33ptoo.components.KButton btnLogin;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private keeptoo.KGradientPanel kGradientPanel1;
     private keeptoo.KGradientPanel kGradientPanel2;
     private javax.swing.JPasswordField password;

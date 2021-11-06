@@ -25,6 +25,7 @@ public class AddEmployee extends javax.swing.JFrame {
     private Connection con;
     private Statement statment;
     private MenuNavigation menuNav;
+
     public AddEmployee() {
         DbConnection DB = new DbConnection();
         DB.Connect();
@@ -54,11 +55,17 @@ public class AddEmployee extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         name = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        email = new javax.swing.JTextField();
+        date = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         password = new javax.swing.JTextField();
         btnLogin1 = new com.k33ptoo.components.KButton();
         btnLogin2 = new com.k33ptoo.components.KButton();
+        jLabel12 = new javax.swing.JLabel();
+        username = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        email = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
+        role = new javax.swing.JTextField();
         listorders = new javax.swing.JLabel();
         customers = new javax.swing.JLabel();
         financial = new javax.swing.JLabel();
@@ -143,15 +150,15 @@ public class AddEmployee extends javax.swing.JFrame {
 
         jLabel8.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(75, 160, 175));
-        jLabel8.setText("Email :");
+        jLabel8.setText("Birth Date :");
 
-        email.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        email.setForeground(new java.awt.Color(75, 160, 175));
-        email.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(75, 160, 175)));
-        email.setSelectionColor(new java.awt.Color(0, 153, 153));
-        email.addActionListener(new java.awt.event.ActionListener() {
+        date.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        date.setForeground(new java.awt.Color(75, 160, 175));
+        date.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(75, 160, 175)));
+        date.setSelectionColor(new java.awt.Color(0, 153, 153));
+        date.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                emailActionPerformed(evt);
+                dateActionPerformed(evt);
             }
         });
 
@@ -197,6 +204,48 @@ public class AddEmployee extends javax.swing.JFrame {
             }
         });
 
+        jLabel12.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(75, 160, 175));
+        jLabel12.setText("Username :");
+
+        username.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        username.setForeground(new java.awt.Color(75, 160, 175));
+        username.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(75, 160, 175)));
+        username.setSelectionColor(new java.awt.Color(0, 153, 153));
+        username.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usernameActionPerformed(evt);
+            }
+        });
+
+        jLabel14.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(75, 160, 175));
+        jLabel14.setText("Email :");
+
+        email.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        email.setForeground(new java.awt.Color(75, 160, 175));
+        email.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(75, 160, 175)));
+        email.setSelectionColor(new java.awt.Color(0, 153, 153));
+        email.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                emailActionPerformed(evt);
+            }
+        });
+
+        jLabel19.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(75, 160, 175));
+        jLabel19.setText("Role :");
+
+        role.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        role.setForeground(new java.awt.Color(75, 160, 175));
+        role.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(75, 160, 175)));
+        role.setSelectionColor(new java.awt.Color(0, 153, 153));
+        role.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                roleActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout kGradientPanel2Layout = new javax.swing.GroupLayout(kGradientPanel2);
         kGradientPanel2.setLayout(kGradientPanel2Layout);
         kGradientPanel2Layout.setHorizontalGroup(
@@ -227,13 +276,20 @@ public class AddEmployee extends javax.swing.JFrame {
                                 .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel7)
                                     .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel9)
-                                    .addComponent(btnLogin2, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(80, 80, 80)
+                                    .addComponent(btnLogin2, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel12)
+                                    .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel14)
+                                    .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(74, 74, 74)
                                 .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel8)
-                                    .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel19)
+                                    .addComponent(role, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(10, 10, 10)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         kGradientPanel2Layout.setVerticalGroup(
@@ -254,18 +310,34 @@ public class AddEmployee extends javax.swing.JFrame {
                 .addGap(47, 47, 47)
                 .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(kGradientPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
+                        .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(kGradientPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(kGradientPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(28, 28, 28)
+                        .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(kGradientPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(kGradientPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel12)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(27, 27, 27)
+                        .addComponent(jLabel14)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(kGradientPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel19)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(34, 34, 34)
-                .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 181, Short.MAX_VALUE)
+                        .addComponent(role, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
                 .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLogin2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -277,11 +349,21 @@ public class AddEmployee extends javax.swing.JFrame {
         listorders.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         listorders.setForeground(new java.awt.Color(0, 83, 131));
         listorders.setText("List Orders");
+        listorders.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listordersMouseClicked(evt);
+            }
+        });
         kGradientPanel1.add(listorders, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 187, 57));
 
         customers.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         customers.setForeground(new java.awt.Color(0, 83, 131));
         customers.setText("Customers");
+        customers.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                customersMouseClicked(evt);
+            }
+        });
         kGradientPanel1.add(customers, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 420, 187, 57));
 
         financial.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -295,6 +377,11 @@ public class AddEmployee extends javax.swing.JFrame {
         dashboard.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         dashboard.setForeground(new java.awt.Color(0, 83, 131));
         dashboard.setText("Dashboard");
+        dashboard.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                dashboardMouseClicked(evt);
+            }
+        });
         kGradientPanel1.add(dashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 187, 57));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rentcar/images/logo-1.png"))); // NOI18N
@@ -356,6 +443,11 @@ public class AddEmployee extends javax.swing.JFrame {
         jLabel23.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(0, 83, 131));
         jLabel23.setText("Role");
+        jLabel23.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel23MouseClicked(evt);
+            }
+        });
         kGradientPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 560, 187, 57));
 
         jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rentcar/images/logo-1.png"))); // NOI18N
@@ -403,9 +495,9 @@ public class AddEmployee extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_nameActionPerformed
 
-    private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
+    private void dateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_emailActionPerformed
+    }//GEN-LAST:event_dateActionPerformed
 
     private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
         // TODO add your handling code here:
@@ -414,11 +506,12 @@ public class AddEmployee extends javax.swing.JFrame {
     private void btnLogin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogin1ActionPerformed
         // TODO add your handling code here:
         try {
-            String insertQuery = "INSERT INTO tb_user VALUES ('0','"
+            String insertQuery = "INSERT INTO tb_employe VALUES ('0','"
                     + name.getText() + "', '"
-                    + "Admin" + "', '"
-                    + email.getText() + "', '"
-                    + password.getText() + "', '1')";
+                    + date.getText() + "', '"
+                    + username.getText() + "', '"
+                    + password.getText() + "', '"
+                    + email.getText() + "', '1')";
 
             PreparedStatement prepare = con.prepareStatement(insertQuery);
             prepare.execute();
@@ -441,6 +534,40 @@ public class AddEmployee extends javax.swing.JFrame {
         menuNav.car(this);
     }//GEN-LAST:event_carsMouseClicked
 
+    private void usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usernameActionPerformed
+
+    private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_emailActionPerformed
+
+    private void roleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_roleActionPerformed
+
+    private void customersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customersMouseClicked
+        // TODO add your handling code here:
+        menuNav.customer(this);
+    }//GEN-LAST:event_customersMouseClicked
+
+    private void dashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardMouseClicked
+        // TODO add your handling code here:
+        menuNav.adminDashboard(this);
+
+    }//GEN-LAST:event_dashboardMouseClicked
+
+    private void jLabel23MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel23MouseClicked
+        // TODO add your handling code here:
+        menuNav.Role(this);
+
+    }//GEN-LAST:event_jLabel23MouseClicked
+
+    private void listordersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listordersMouseClicked
+        // TODO add your handling code here:
+        menuNav.ListOrder(this);
+
+    }//GEN-LAST:event_listordersMouseClicked
 
     /**
      * @param args the command line arguments
@@ -483,16 +610,20 @@ public class AddEmployee extends javax.swing.JFrame {
     private javax.swing.JLabel cars;
     private javax.swing.JLabel customers;
     private javax.swing.JLabel dashboard;
+    private javax.swing.JTextField date;
     private javax.swing.JTextField email;
     private javax.swing.JLabel employees;
     private javax.swing.JLabel financial;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
@@ -511,6 +642,8 @@ public class AddEmployee extends javax.swing.JFrame {
     private javax.swing.JLabel listorders;
     private javax.swing.JTextField name;
     private javax.swing.JTextField password;
+    private javax.swing.JTextField role;
     private javax.swing.JLabel userLogin;
+    private javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables
 }

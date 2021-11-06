@@ -5,6 +5,9 @@
  */
 package rentcar.order;
 
+import rentcar.MenuNavigation;
+import rentcar.UserSession;
+
 /**
  *
  * @author Admin
@@ -14,8 +17,13 @@ public class OrderCust extends javax.swing.JFrame {
     /**
      * Creates new form OrderCust
      */
+    private MenuNavigation menuNav;
     public OrderCust() {
         initComponents();
+        this.menuNav = new MenuNavigation(); 
+        
+        String ID = UserSession.getUserLogin();
+        userLogin.setText(ID);
     }
 
     /**
@@ -232,6 +240,11 @@ public class OrderCust extends javax.swing.JFrame {
         dashboard.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         dashboard.setForeground(new java.awt.Color(0, 83, 131));
         dashboard.setText("Dashboard");
+        dashboard.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                dashboardMouseClicked(evt);
+            }
+        });
         kGradientPanel1.add(dashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, -1, -1));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -294,20 +307,15 @@ public class OrderCust extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1377, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(kGradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1357, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(kGradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1357, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 779, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(kGradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 779, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(kGradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 779, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -326,7 +334,13 @@ public class OrderCust extends javax.swing.JFrame {
 
     private void cars1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cars1MouseClicked
         // TODO add your handling code here:
+        menuNav.ListHistory(this);
     }//GEN-LAST:event_cars1MouseClicked
+
+    private void dashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardMouseClicked
+        // TODO add your handling code here:
+        menuNav.dashboardCust(this);
+    }//GEN-LAST:event_dashboardMouseClicked
 
     /**
      * @param args the command line arguments

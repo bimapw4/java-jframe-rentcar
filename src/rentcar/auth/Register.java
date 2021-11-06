@@ -52,14 +52,18 @@ public class Register extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        fullname = new javax.swing.JTextField();
-        phone = new javax.swing.JTextField();
-        email = new javax.swing.JTextField();
+        nik = new javax.swing.JTextField();
+        username = new javax.swing.JTextField();
+        name = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         pass = new javax.swing.JPasswordField();
+        jLabel11 = new javax.swing.JLabel();
+        email = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        phone = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -103,36 +107,122 @@ public class Register extends javax.swing.JFrame {
             }
         });
 
-        fullname.setBackground(new java.awt.Color(208, 233, 255));
-        fullname.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        fullname.setForeground(new java.awt.Color(75, 160, 175));
-        fullname.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(75, 160, 175)));
-        fullname.setSelectionColor(new java.awt.Color(0, 153, 153));
-        fullname.addMouseListener(new java.awt.event.MouseAdapter() {
+        nik.setBackground(new java.awt.Color(208, 233, 255));
+        nik.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        nik.setForeground(new java.awt.Color(75, 160, 175));
+        nik.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(75, 160, 175)));
+        nik.setSelectionColor(new java.awt.Color(0, 153, 153));
+        nik.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                fullnameMouseClicked(evt);
+                nikMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                fullnameMouseEntered(evt);
+                nikMouseEntered(evt);
             }
         });
-        fullname.addInputMethodListener(new java.awt.event.InputMethodListener() {
+        nik.addInputMethodListener(new java.awt.event.InputMethodListener() {
             public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
-                fullnameInputMethodTextChanged(evt);
+                nikInputMethodTextChanged(evt);
             }
         });
-        fullname.addActionListener(new java.awt.event.ActionListener() {
+        nik.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fullnameActionPerformed(evt);
+                nikActionPerformed(evt);
             }
         });
-        fullname.addKeyListener(new java.awt.event.KeyAdapter() {
+        nik.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                fullnameKeyTyped(evt);
+                nikKeyTyped(evt);
             }
         });
+
+        username.setBackground(new java.awt.Color(208, 233, 255));
+        username.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        username.setForeground(new java.awt.Color(75, 160, 175));
+        username.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(75, 160, 175)));
+        username.setSelectionColor(new java.awt.Color(0, 153, 153));
+        username.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usernameActionPerformed(evt);
+            }
+        });
+
+        name.setBackground(new java.awt.Color(208, 233, 255));
+        name.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        name.setForeground(new java.awt.Color(75, 160, 175));
+        name.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(75, 160, 175)));
+        name.setSelectionColor(new java.awt.Color(0, 153, 153));
+        name.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                nameMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                nameMouseEntered(evt);
+            }
+        });
+        name.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                nameInputMethodTextChanged(evt);
+            }
+        });
+        name.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nameActionPerformed(evt);
+            }
+        });
+        name.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nameKeyTyped(evt);
+            }
+        });
+
+        jLabel7.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(75, 160, 175));
+        jLabel7.setText("Identity Card Number :");
+
+        jLabel8.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(75, 160, 175));
+        jLabel8.setText("Full Name :");
+
+        jLabel9.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(75, 160, 175));
+        jLabel9.setText("Username :");
+
+        jLabel10.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(75, 160, 175));
+        jLabel10.setText("Phone Number :");
+
+        pass.setBackground(new java.awt.Color(208, 233, 255));
+        pass.setForeground(new java.awt.Color(75, 160, 175));
+        pass.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(75, 160, 175)));
+        pass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passActionPerformed(evt);
+            }
+        });
+
+        jLabel11.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(75, 160, 175));
+        jLabel11.setText("Email :");
+
+        email.setBackground(new java.awt.Color(208, 233, 255));
+        email.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        email.setForeground(new java.awt.Color(75, 160, 175));
+        email.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(75, 160, 175)));
+        email.setSelectionColor(new java.awt.Color(0, 153, 153));
+        email.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                emailActionPerformed(evt);
+            }
+        });
+
+        jLabel12.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(75, 160, 175));
+        jLabel12.setText("Password :");
 
         phone.setBackground(new java.awt.Color(208, 233, 255));
         phone.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -145,62 +235,6 @@ public class Register extends javax.swing.JFrame {
             }
         });
 
-        email.setBackground(new java.awt.Color(208, 233, 255));
-        email.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        email.setForeground(new java.awt.Color(75, 160, 175));
-        email.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(75, 160, 175)));
-        email.setSelectionColor(new java.awt.Color(0, 153, 153));
-        email.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                emailMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                emailMouseEntered(evt);
-            }
-        });
-        email.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-            }
-            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
-                emailInputMethodTextChanged(evt);
-            }
-        });
-        email.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                emailActionPerformed(evt);
-            }
-        });
-        email.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                emailKeyTyped(evt);
-            }
-        });
-
-        jLabel7.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(75, 160, 175));
-        jLabel7.setText("FullName :");
-
-        jLabel8.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(75, 160, 175));
-        jLabel8.setText("Email Address :");
-
-        jLabel9.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(75, 160, 175));
-        jLabel9.setText("Phone Number :");
-
-        jLabel10.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(75, 160, 175));
-        jLabel10.setText("Password :");
-
-        pass.setBackground(new java.awt.Color(208, 233, 255));
-        pass.setForeground(new java.awt.Color(75, 160, 175));
-        pass.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(75, 160, 175)));
-        pass.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout kGradientPanel2Layout = new javax.swing.GroupLayout(kGradientPanel2);
         kGradientPanel2.setLayout(kGradientPanel2Layout);
         kGradientPanel2Layout.setHorizontalGroup(
@@ -209,22 +243,27 @@ public class Register extends javax.swing.JFrame {
                 .addGap(0, 49, Short.MAX_VALUE)
                 .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel2Layout.createSequentialGroup()
-                        .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(pass)
+                        .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(phone, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel10)
-                                .addComponent(jLabel9)
                                 .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(phone, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(kGradientPanel2Layout.createSequentialGroup()
-                                        .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(fullname, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel7))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel8)
-                                            .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                        .addGap(47, 47, 47))
+                                    .addComponent(nik, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel11)
+                                    .addComponent(email))
+                                .addComponent(jLabel10)))
+                        .addGap(25, 25, 25)
+                        .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel8)
+                            .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9)
+                            .addGroup(kGradientPanel2Layout.createSequentialGroup()
+                                .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel3)))
+                        .addGap(31, 31, 31))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel2Layout.createSequentialGroup()
                         .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(177, 177, 177))))
@@ -232,41 +271,53 @@ public class Register extends javax.swing.JFrame {
                 .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(kGradientPanel2Layout.createSequentialGroup()
                         .addGap(133, 133, 133)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3))
+                        .addComponent(jLabel2))
                     .addGroup(kGradientPanel2Layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
+                        .addGap(24, 24, 24)
                         .addComponent(jLabel1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         kGradientPanel2Layout.setVerticalGroup(
             kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(19, 19, 19)
                 .addComponent(jLabel1)
-                .addGap(34, 34, 34)
+                .addGap(26, 26, 26)
                 .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(email)
-                    .addComponent(fullname, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(name)
+                    .addComponent(nik, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(phone, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(kGradientPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(kGradientPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
+                .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(kGradientPanel2Layout.createSequentialGroup()
+                        .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(kGradientPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(phone, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                        .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel2))
+                    .addGroup(kGradientPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -316,11 +367,12 @@ public class Register extends javax.swing.JFrame {
         //private void login() {
         // this.menuNav.loginPage(this);
         try {
-
-            String insertQuery = "INSERT INTO tb_user VALUES ('0','"
-                    + fullname.getText() + "', '"
-                    + "" + "', '"
+            int number = Integer.parseInt(nik.getText());
+            String insertQuery = "INSERT INTO tb_customer VALUES ('"
+                    + number + "', '"
+                    + name.getText() + "', '"
                     + email.getText() + "', '"
+                    + username.getText() + "', '"
                     + pass.getText() + "', '"
                     + phone.getText() + "')";
 
@@ -336,62 +388,70 @@ public class Register extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnLoginActionPerformed
 
-    private void fullnameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fullnameMouseClicked
+    private void nikMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nikMouseClicked
         // TODO add your handling code here:
 
-        fullname.setText("");
-        phone.setText("");
-    }//GEN-LAST:event_fullnameMouseClicked
+        nik.setText("");
+        username.setText("");
+    }//GEN-LAST:event_nikMouseClicked
 
-    private void fullnameMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fullnameMouseEntered
+    private void nikMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nikMouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_fullnameMouseEntered
+    }//GEN-LAST:event_nikMouseEntered
 
-    private void fullnameInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_fullnameInputMethodTextChanged
+    private void nikInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_nikInputMethodTextChanged
         // TODO add your handling code here:
-    }//GEN-LAST:event_fullnameInputMethodTextChanged
+    }//GEN-LAST:event_nikInputMethodTextChanged
 
-    private void fullnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fullnameActionPerformed
+    private void nikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nikActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_fullnameActionPerformed
+    }//GEN-LAST:event_nikActionPerformed
 
-    private void fullnameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fullnameKeyTyped
+    private void nikKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nikKeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_fullnameKeyTyped
+    }//GEN-LAST:event_nikKeyTyped
 
-    private void phoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneActionPerformed
+    private void usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_phoneActionPerformed
+    }//GEN-LAST:event_usernameActionPerformed
 
-    private void emailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_emailMouseClicked
+    private void nameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nameMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_emailMouseClicked
+    }//GEN-LAST:event_nameMouseClicked
 
-    private void emailMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_emailMouseEntered
+    private void nameMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nameMouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_emailMouseEntered
+    }//GEN-LAST:event_nameMouseEntered
 
-    private void emailInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_emailInputMethodTextChanged
+    private void nameInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_nameInputMethodTextChanged
         // TODO add your handling code here:
-    }//GEN-LAST:event_emailInputMethodTextChanged
+    }//GEN-LAST:event_nameInputMethodTextChanged
 
-    private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
+    private void nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_emailActionPerformed
+    }//GEN-LAST:event_nameActionPerformed
 
-    private void emailKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_emailKeyTyped
+    private void nameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameKeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_emailKeyTyped
+    }//GEN-LAST:event_nameKeyTyped
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         // TODO add your handling code here:
 
-        menuNav.login(this);
+        menuNav.loginCust(this);
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void passActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_passActionPerformed
+
+    private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_emailActionPerformed
+
+    private void phoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_phoneActionPerformed
 
     /**
      * @param args the command line arguments
@@ -431,9 +491,10 @@ public class Register extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.k33ptoo.components.KButton btnLogin;
     private javax.swing.JTextField email;
-    private javax.swing.JTextField fullname;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -442,7 +503,10 @@ public class Register extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private keeptoo.KGradientPanel kGradientPanel1;
     private keeptoo.KGradientPanel kGradientPanel2;
+    private javax.swing.JTextField name;
+    private javax.swing.JTextField nik;
     private javax.swing.JPasswordField pass;
     private javax.swing.JTextField phone;
+    private javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables
 }

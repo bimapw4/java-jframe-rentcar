@@ -260,6 +260,11 @@ public class AddCarType extends javax.swing.JFrame {
         listorders.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         listorders.setForeground(new java.awt.Color(0, 83, 131));
         listorders.setText("List Orders");
+        listorders.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listordersMouseClicked(evt);
+            }
+        });
         kGradientPanel1.add(listorders, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 187, 57));
 
         employees.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -434,6 +439,12 @@ public class AddCarType extends javax.swing.JFrame {
         // TODO add your handling code here:
         menuNav.Role(this);
     }//GEN-LAST:event_jLabel23MouseClicked
+
+    private void listordersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listordersMouseClicked
+        // TODO add your handling code here:
+        menuNav.ListOrder(this);
+
+    }//GEN-LAST:event_listordersMouseClicked
     private void loadData() {
         try {
             DefaultTableModel model = (DefaultTableModel) cartypeList.getModel();

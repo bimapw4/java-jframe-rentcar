@@ -52,23 +52,23 @@ public class CarMaster extends javax.swing.JFrame {
         kGradientPanel1 = new keeptoo.KGradientPanel();
         kGradientPanel2 = new keeptoo.KGradientPanel();
         kGradientPanel5 = new keeptoo.KGradientPanel();
-        jPanel1 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
         jLabel29 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel24 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         userLogin = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        kGradientPanel7 = new keeptoo.KGradientPanel();
-        jPanel5 = new javax.swing.JPanel();
-        jLabel32 = new javax.swing.JLabel();
-        jLabel33 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         carList = new javax.swing.JTable();
         btnLogin = new com.k33ptoo.components.KButton();
         btnTipe = new com.k33ptoo.components.KButton();
+        kGradientPanel6 = new keeptoo.KGradientPanel();
+        jLabel18 = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel19 = new javax.swing.JLabel();
         listorders = new javax.swing.JLabel();
         employees = new javax.swing.JLabel();
         customers = new javax.swing.JLabel();
@@ -106,48 +106,49 @@ public class CarMaster extends javax.swing.JFrame {
 
         kGradientPanel5.setkEndColor(new java.awt.Color(246, 245, 245));
         kGradientPanel5.setkStartColor(new java.awt.Color(246, 245, 245));
+        kGradientPanel5.setPreferredSize(new java.awt.Dimension(236, 79));
 
-        jPanel1.setBackground(new java.awt.Color(75, 160, 175));
-        jPanel1.setForeground(new java.awt.Color(0, 83, 131));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 238, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 11, Short.MAX_VALUE)
-        );
-
-        jLabel8.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel8.setText("1");
 
         jLabel7.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel7.setText("Available Car");
 
+        jPanel4.setBackground(new java.awt.Color(75, 160, 175));
+        jPanel4.setPreferredSize(new java.awt.Dimension(8, 0));
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 8, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout kGradientPanel5Layout = new javax.swing.GroupLayout(kGradientPanel5);
         kGradientPanel5.setLayout(kGradientPanel5Layout);
         kGradientPanel5Layout.setHorizontalGroup(
             kGradientPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(kGradientPanel5Layout.createSequentialGroup()
-                .addGap(99, 99, 99)
-                .addComponent(jLabel8))
-            .addGroup(kGradientPanel5Layout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addComponent(jLabel7))
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
         kGradientPanel5Layout.setVerticalGroup(
             kGradientPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(kGradientPanel5Layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addComponent(jLabel8)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel7)
-                .addGap(21, 21, 21))
+                .addGap(21, 21, 21)
+                .addGroup(kGradientPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel8))
+                .addContainerGap(29, Short.MAX_VALUE))
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
         );
 
         jLabel29.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
@@ -185,52 +186,6 @@ public class CarMaster extends javax.swing.JFrame {
                 jLabel11MouseClicked(evt);
             }
         });
-
-        kGradientPanel7.setkEndColor(new java.awt.Color(235, 235, 235));
-        kGradientPanel7.setkStartColor(new java.awt.Color(235, 235, 235));
-
-        jPanel5.setBackground(new java.awt.Color(75, 160, 175));
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 238, Short.MAX_VALUE)
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 11, Short.MAX_VALUE)
-        );
-
-        jLabel32.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
-        jLabel32.setText("10");
-
-        jLabel33.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel33.setText("Booked Car");
-
-        javax.swing.GroupLayout kGradientPanel7Layout = new javax.swing.GroupLayout(kGradientPanel7);
-        kGradientPanel7.setLayout(kGradientPanel7Layout);
-        kGradientPanel7Layout.setHorizontalGroup(
-            kGradientPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel7Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel33)
-                .addGap(67, 67, 67))
-            .addGroup(kGradientPanel7Layout.createSequentialGroup()
-                .addGap(92, 92, 92)
-                .addComponent(jLabel32))
-        );
-        kGradientPanel7Layout.setVerticalGroup(
-            kGradientPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(kGradientPanel7Layout.createSequentialGroup()
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addComponent(jLabel32)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel33)
-                .addGap(21, 21, 21))
-        );
 
         carList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -273,6 +228,53 @@ public class CarMaster extends javax.swing.JFrame {
             }
         });
 
+        kGradientPanel6.setkEndColor(new java.awt.Color(246, 245, 245));
+        kGradientPanel6.setkStartColor(new java.awt.Color(246, 245, 245));
+        kGradientPanel6.setPreferredSize(new java.awt.Dimension(236, 79));
+
+        jLabel18.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel18.setText("Booked Car");
+
+        jPanel6.setBackground(new java.awt.Color(75, 160, 175));
+        jPanel6.setPreferredSize(new java.awt.Dimension(8, 0));
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 8, Short.MAX_VALUE)
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLabel19.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel19.setText("1");
+
+        javax.swing.GroupLayout kGradientPanel6Layout = new javax.swing.GroupLayout(kGradientPanel6);
+        kGradientPanel6.setLayout(kGradientPanel6Layout);
+        kGradientPanel6Layout.setHorizontalGroup(
+            kGradientPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(kGradientPanel6Layout.createSequentialGroup()
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
+        );
+        kGradientPanel6Layout.setVerticalGroup(
+            kGradientPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(kGradientPanel6Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(kGradientPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel19)
+                    .addComponent(jLabel18))
+                .addContainerGap(27, Short.MAX_VALUE))
+            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout kGradientPanel2Layout = new javax.swing.GroupLayout(kGradientPanel2);
         kGradientPanel2.setLayout(kGradientPanel2Layout);
         kGradientPanel2Layout.setHorizontalGroup(
@@ -291,10 +293,10 @@ public class CarMaster extends javax.swing.JFrame {
                     .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(kGradientPanel2Layout.createSequentialGroup()
                         .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(kGradientPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel24)
-                            .addComponent(kGradientPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(48, 48, 48)
+                            .addComponent(kGradientPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(kGradientPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(50, 50, 50)
                         .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel2Layout.createSequentialGroup()
                                 .addComponent(btnTipe, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -326,13 +328,13 @@ public class CarMaster extends javax.swing.JFrame {
                     .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnTipe, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(kGradientPanel2Layout.createSequentialGroup()
                         .addComponent(kGradientPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37)
-                        .addComponent(kGradientPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap(179, Short.MAX_VALUE))
+                        .addGap(27, 27, 27)
+                        .addComponent(kGradientPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(260, Short.MAX_VALUE))
         );
 
         kGradientPanel1.add(kGradientPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 0, 1470, 780));
@@ -340,6 +342,11 @@ public class CarMaster extends javax.swing.JFrame {
         listorders.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         listorders.setForeground(new java.awt.Color(0, 83, 131));
         listorders.setText("List Orders");
+        listorders.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listordersMouseClicked(evt);
+            }
+        });
         kGradientPanel1.add(listorders, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 187, 57));
 
         employees.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -499,6 +506,12 @@ public class CarMaster extends javax.swing.JFrame {
         menuNav.Role(this);
     }//GEN-LAST:event_jLabel23MouseClicked
 
+    private void listordersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listordersMouseClicked
+        // TODO add your handling code here:
+        menuNav.ListOrder(this);
+
+    }//GEN-LAST:event_listordersMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -575,27 +588,27 @@ public class CarMaster extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private keeptoo.KGradientPanel kGradientPanel1;
     private keeptoo.KGradientPanel kGradientPanel2;
     private keeptoo.KGradientPanel kGradientPanel5;
-    private keeptoo.KGradientPanel kGradientPanel7;
+    private keeptoo.KGradientPanel kGradientPanel6;
     private javax.swing.JLabel listorders;
     private javax.swing.JLabel userLogin;
     // End of variables declaration//GEN-END:variables
