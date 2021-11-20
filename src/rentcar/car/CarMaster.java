@@ -189,13 +189,13 @@ public class CarMaster extends javax.swing.JFrame {
 
         carList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Car Id", "Car name", "Merk", "Type", "Fee", "Status"
+                "Car Id", "Merk", "Type", "Fee", "Status"
             }
         ));
         jScrollPane1.setViewportView(carList);
@@ -558,10 +558,9 @@ public class CarMaster extends javax.swing.JFrame {
             while (result.next()) {
                 model.addRow(new Object[]{
                     result.getInt("id_mobil"),
-                    result.getString("nama_mobil"),
-                    result.getString("merk"),
-                    result.getString("tipe"),
-                    result.getString("fee"),
+                    result.getString("merek"),
+                    result.getString("id_tipe"),
+                    result.getString("harga"),
                     result.getString("status")});
 
                 carList.setModel(model);

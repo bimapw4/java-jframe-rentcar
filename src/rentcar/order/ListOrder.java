@@ -9,7 +9,13 @@ package rentcar.order;
  *
  * @author Admin
  */
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import rentcar.DbConnection;
 import rentcar.MenuNavigation;
 
 public class ListOrder extends javax.swing.JFrame {
@@ -18,10 +24,21 @@ public class ListOrder extends javax.swing.JFrame {
      * Creates new form ListOrder
      */
     private MenuNavigation menuNav;
+    private Connection con;
+    private Statement statment;
 
     public ListOrder() {
         this.menuNav = new MenuNavigation();
         initComponents();
+        DbConnection DB = new DbConnection();
+        DB.Connect();
+        con = DB.conn;
+        statment = DB.stmt;
+        this.menuNav = new MenuNavigation();
+        loadDataNotFinish();
+        loadDataFinish();
+        loadTotalOrder();
+        loadTotalFinishOrder();
     }
 
     /**
@@ -42,7 +59,7 @@ public class ListOrder extends javax.swing.JFrame {
         userLogin = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TotalOrderTB = new javax.swing.JTable();
         kGradientPanel5 = new keeptoo.KGradientPanel();
         jLabel7 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
@@ -52,7 +69,7 @@ public class ListOrder extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         totalEm = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        FinisOrderTb = new javax.swing.JTable();
         employees = new javax.swing.JLabel();
         customers = new javax.swing.JLabel();
         financial = new javax.swing.JLabel();
@@ -121,7 +138,7 @@ public class ListOrder extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TotalOrderTB.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -129,10 +146,10 @@ public class ListOrder extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Start Date", "End Date", "ID Mobil", "Harga Sewa"
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(TotalOrderTB);
 
         kGradientPanel5.setkEndColor(new java.awt.Color(246, 245, 245));
         kGradientPanel5.setkStartColor(new java.awt.Color(246, 245, 245));
@@ -156,7 +173,7 @@ public class ListOrder extends javax.swing.JFrame {
         );
 
         totalEm1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        totalEm1.setText("1");
+        totalEm1.setText("0");
 
         javax.swing.GroupLayout kGradientPanel5Layout = new javax.swing.GroupLayout(kGradientPanel5);
         kGradientPanel5.setLayout(kGradientPanel5Layout);
@@ -202,7 +219,7 @@ public class ListOrder extends javax.swing.JFrame {
         );
 
         totalEm.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        totalEm.setText("1");
+        totalEm.setText("0");
 
         javax.swing.GroupLayout kGradientPanel6Layout = new javax.swing.GroupLayout(kGradientPanel6);
         kGradientPanel6.setLayout(kGradientPanel6Layout);
@@ -227,7 +244,7 @@ public class ListOrder extends javax.swing.JFrame {
             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
         );
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        FinisOrderTb.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -238,7 +255,7 @@ public class ListOrder extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane3.setViewportView(jTable2);
+        jScrollPane3.setViewportView(FinisOrderTb);
 
         javax.swing.GroupLayout kGradientPanel2Layout = new javax.swing.GroupLayout(kGradientPanel2);
         kGradientPanel2.setLayout(kGradientPanel2Layout);
@@ -465,7 +482,87 @@ public class ListOrder extends javax.swing.JFrame {
         menuNav.Role(this);
 
     }//GEN-LAST:event_jLabel23MouseClicked
+    
+     private void loadDataNotFinish() {
+        try {
+            DefaultTableModel model = (DefaultTableModel) TotalOrderTB.getModel();
+            // clear data
+            model.setRowCount(0);
+            String selectQuery = "SELECT * FROM tb_transaksi where not status = 'FINISH'";
+            ResultSet result = statment.executeQuery(selectQuery);
+            while (result.next()) {
+                model.addRow(new Object[]{
+                    result.getString("start_date"),
+                    result.getString("end_date"),
+                    result.getString("id_mobil"),
+                    result.getString("harga_sewa"),
+                    result.getString("id_user"),
+                    result.getString("status")
+                });
 
+                TotalOrderTB.setModel(model);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }
+    
+     private void loadTotalOrder() {
+        try {
+            String selectQuery = "SELECT Count(*) as count FROM tb_transaksi where not status = 'FINISH'";
+            ResultSet result = statment.executeQuery(selectQuery);
+            while (result.next()) {
+                if (result.getString("count") != null) {
+
+                    totalEm.setText(result.getString("totalEm1"));
+                } else {
+                    totalEm.setText("0");
+                }
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }
+     
+     private void loadTotalFinishOrder() {
+        try {
+            String selectQuery = "SELECT Count(*) as count FROM tb_transaksi where status = 'FINISH'";
+            ResultSet result = statment.executeQuery(selectQuery);
+            while (result.next()) {
+                if (result.getString("count") != null) {
+
+                    totalEm.setText(result.getString("totalEm"));
+                } else {
+                    totalEm.setText("0");
+                }
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }
+     private void loadDataFinish() {
+        try {
+            DefaultTableModel model = (DefaultTableModel) FinisOrderTb.getModel();
+            // clear data
+            model.setRowCount(0);
+            String selectQuery = "SELECT * FROM tb_transaksi where status = 'FINISH'";
+            ResultSet result = statment.executeQuery(selectQuery);
+            while (result.next()) {
+                model.addRow(new Object[]{
+                    result.getString("start_date"),
+                    result.getString("end_date"),
+                    result.getString("id_mobil"),
+                    result.getString("harga_sewa"),
+                    result.getString("id_user"),
+                    result.getString("status")
+                });
+
+                FinisOrderTb.setModel(model);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+     }
     /**
      * @param args the command line arguments
      */
@@ -502,6 +599,8 @@ public class ListOrder extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable FinisOrderTb;
+    private javax.swing.JTable TotalOrderTB;
     private javax.swing.JLabel cars;
     private javax.swing.JLabel customers;
     private javax.swing.JLabel dashboard;
@@ -530,8 +629,6 @@ public class ListOrder extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private keeptoo.KGradientPanel kGradientPanel1;
     private keeptoo.KGradientPanel kGradientPanel2;
     private keeptoo.KGradientPanel kGradientPanel5;
