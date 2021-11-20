@@ -5,8 +5,16 @@
  */
 package rentcar.history;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import rentcar.DbConnection;
 import rentcar.MenuNavigation;
 import rentcar.UserSession;
+import java.sql.Statement;
+
 
 /**
  *
@@ -18,6 +26,9 @@ public class ListHistory extends javax.swing.JFrame {
      * Creates new form ListHistory
      */
     private MenuNavigation menuNav;
+    private Statement statment;
+    private Connection con;
+    
     public ListHistory() {
         initComponents();
         
@@ -25,6 +36,13 @@ public class ListHistory extends javax.swing.JFrame {
         
         String ID = UserSession.getUserLogin();
         userLogin.setText(ID);
+        
+        DbConnection DB = new DbConnection();
+        DB.Connect();
+        con = DB.conn;
+        statment = DB.stmt;
+        
+        loadData();
     }
 
     /**
@@ -45,7 +63,7 @@ public class ListHistory extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        BookingTB = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -108,7 +126,7 @@ public class ListHistory extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(182, 231, 242));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        BookingTB.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -116,10 +134,10 @@ public class ListHistory extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "No", "Car", "Fee", "Book"
+                "Start Date", "End Date", "Mobil", "Status"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(BookingTB);
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel1.setText("Booked");
@@ -323,7 +341,28 @@ public class ListHistory extends javax.swing.JFrame {
         // TODO add your handling code here:
         menuNav.dashboardCust(this);
     }//GEN-LAST:event_dashboardMouseClicked
+    
+    private void loadData() {
+        try {
+            DefaultTableModel model = (DefaultTableModel) BookingTB.getModel();
+            // clear data
+            model.setRowCount(0);
+            String selectQuery = "SELECT * FROM tb_transaksi, tb_mobil where id_user = '1' ";
+            ResultSet result = statment.executeQuery(selectQuery);
+            while (result.next()) {
+                model.addRow(new Object[]{
+                    result.getString("start_date"),
+                    result.getString("end_date"),
+                    result.getString("id_mobil"),
+                    result.getString("harga_sewa"),
+                    result.getString("status")});
 
+                BookingTB.setModel(model);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -360,6 +399,7 @@ public class ListHistory extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable BookingTB;
     private javax.swing.JLabel cars;
     private javax.swing.JLabel cars1;
     private javax.swing.JLabel dashboard;
@@ -379,7 +419,6 @@ public class ListHistory extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private keeptoo.KGradientPanel kGradientPanel1;
     private keeptoo.KGradientPanel kGradientPanel2;
