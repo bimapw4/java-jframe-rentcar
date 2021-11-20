@@ -126,21 +126,9 @@ public class MenuNavigation {
         current.setVisible(false);
     }
 
-    public void DetailHistory(Window current) {
-        DetailHistory DetailHistory = new DetailHistory();
-        DetailHistory.setVisible(true);
-        current.setVisible(false);
-    }
-
     public void ListHistory(Window current) {
         ListHistory ListHistory = new ListHistory();
         ListHistory.setVisible(true);
-        current.setVisible(false);
-    }
-
-    public void PaymentPage(Window current) {
-        PaymentPage PaymentPage = new PaymentPage();
-        PaymentPage.setVisible(true);
         current.setVisible(false);
     }
 

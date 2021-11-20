@@ -137,6 +137,11 @@ public class ListHistory extends javax.swing.JFrame {
                 "Start Date", "End Date", "Mobil", "Status"
             }
         ));
+        BookingTB.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BookingTBMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(BookingTB);
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -341,19 +346,28 @@ public class ListHistory extends javax.swing.JFrame {
         // TODO add your handling code here:
         menuNav.dashboardCust(this);
     }//GEN-LAST:event_dashboardMouseClicked
+
+    private void BookingTBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BookingTBMouseClicked
+        // TODO add your handling code here:
+        String NoPesanan = BookingTB.getValueAt(BookingTB.getSelectedRow(), 0).toString();
+        new DetailHistory(NoPesanan).setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_BookingTBMouseClicked
     
     private void loadData() {
         try {
             DefaultTableModel model = (DefaultTableModel) BookingTB.getModel();
             // clear data
             model.setRowCount(0);
-            String selectQuery = "SELECT * FROM tb_transaksi, tb_mobil where id_user = '1' ";
+            String selectQuery = "SELECT * FROM tb_transaksi, tb_mobil where "
+                    + "tb_transaksi.id_mobil = tb_mobil.id_mobil and tb_transaksi.id_user = '1' ";
             ResultSet result = statment.executeQuery(selectQuery);
             while (result.next()) {
                 model.addRow(new Object[]{
+                    result.getString("id_transaksi"),
                     result.getString("start_date"),
                     result.getString("end_date"),
-                    result.getString("id_mobil"),
+                    result.getString("merek"),
                     result.getString("harga_sewa"),
                     result.getString("status")});
 

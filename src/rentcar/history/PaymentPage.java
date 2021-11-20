@@ -5,6 +5,8 @@
  */
 package rentcar.history;
 
+import rentcar.MenuNavigation;
+
 /**
  *
  * @author Admin
@@ -14,8 +16,13 @@ public class PaymentPage extends javax.swing.JFrame {
     /**
      * Creates new form PaymentPage
      */
-    public PaymentPage() {
+    private MenuNavigation menuNav;
+
+    public PaymentPage(String NoPesanan) {
         initComponents();
+        
+        this.menuNav = new MenuNavigation(); 
+
     }
 
     /**
@@ -45,7 +52,7 @@ public class PaymentPage extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        upload = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         employees = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -135,10 +142,15 @@ public class PaymentPage extends javax.swing.JFrame {
         jLabel19.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel19.setText(":");
 
-        jButton1.setText("Upload");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        upload.setText("Upload");
+        upload.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                uploadMouseClicked(evt);
+            }
+        });
+        upload.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                uploadActionPerformed(evt);
             }
         });
 
@@ -175,7 +187,7 @@ public class PaymentPage extends javax.swing.JFrame {
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(55, 55, 55)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(upload, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(214, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -201,7 +213,7 @@ public class PaymentPage extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(upload, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(201, Short.MAX_VALUE))
         );
 
@@ -256,6 +268,11 @@ public class PaymentPage extends javax.swing.JFrame {
         dashboard.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         dashboard.setForeground(new java.awt.Color(0, 83, 131));
         dashboard.setText("Dashboard");
+        dashboard.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                dashboardMouseClicked(evt);
+            }
+        });
         kGradientPanel1.add(dashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, -1, -1));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -343,18 +360,31 @@ public class PaymentPage extends javax.swing.JFrame {
         //        MenuNavigation.login(this);
     }//GEN-LAST:event_jLabel11MouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void uploadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_uploadActionPerformed
 
     private void cars1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cars1MouseClicked
         // TODO add your handling code here:
+    menuNav.ListHistory(this);
+
     }//GEN-LAST:event_cars1MouseClicked
 
     private void carsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_carsMouseClicked
         // TODO add your handling code here:
-        //        menuNav.car(this);
+       menuNav.OrderCust(this);
     }//GEN-LAST:event_carsMouseClicked
+
+    private void uploadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_uploadMouseClicked
+        // TODO add your handling code here:
+        menuNav.ThankYouPage(this);
+    }//GEN-LAST:event_uploadMouseClicked
+
+    private void dashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardMouseClicked
+        // TODO add your handling code here:
+        
+        menuNav.dashboardCust(this);
+    }//GEN-LAST:event_dashboardMouseClicked
 
     /**
      * @param args the command line arguments
@@ -386,7 +416,7 @@ public class PaymentPage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PaymentPage().setVisible(true);
+//                new PaymentPage().setVisible(true);
             }
         });
     }
@@ -396,7 +426,6 @@ public class PaymentPage extends javax.swing.JFrame {
     private javax.swing.JLabel cars1;
     private javax.swing.JLabel dashboard;
     private javax.swing.JLabel employees;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -421,6 +450,7 @@ public class PaymentPage extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private keeptoo.KGradientPanel kGradientPanel1;
     private keeptoo.KGradientPanel kGradientPanel2;
+    private javax.swing.JButton upload;
     private javax.swing.JLabel userLogin;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,6 +5,8 @@
  */
 package rentcar.history;
 
+import rentcar.MenuNavigation;
+
 /**
  *
  * @author Admin
@@ -14,8 +16,13 @@ public class ThankYouPage extends javax.swing.JFrame {
     /**
      * Creates new form ThankYouPage
      */
+    private MenuNavigation menuNav;
+
     public ThankYouPage() {
         initComponents();
+        
+        this.menuNav = new MenuNavigation(); 
+
     }
 
     /**
@@ -177,6 +184,11 @@ public class ThankYouPage extends javax.swing.JFrame {
         dashboard.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         dashboard.setForeground(new java.awt.Color(0, 83, 131));
         dashboard.setText("Dashboard");
+        dashboard.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                dashboardMouseClicked(evt);
+            }
+        });
         kGradientPanel1.add(dashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, -1, -1));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -266,12 +278,18 @@ public class ThankYouPage extends javax.swing.JFrame {
 
     private void cars1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cars1MouseClicked
         // TODO add your handling code here:
+        menuNav.ListHistory(this);
     }//GEN-LAST:event_cars1MouseClicked
 
     private void carsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_carsMouseClicked
         // TODO add your handling code here:
-        //        menuNav.car(this);
+        menuNav.OrderCust(this);
     }//GEN-LAST:event_carsMouseClicked
+
+    private void dashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardMouseClicked
+        // TODO add your handling code here:
+        menuNav.dashboardCust(this);
+    }//GEN-LAST:event_dashboardMouseClicked
 
     /**
      * @param args the command line arguments
