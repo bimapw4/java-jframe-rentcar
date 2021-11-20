@@ -35,6 +35,9 @@ public class AddCar extends javax.swing.JFrame {
         statment = DB.stmt;
         this.menuNav = new MenuNavigation();
         loadDataType();
+        
+        statusGroup.add(rdAvailable);
+        statusGroup.add(rdUnAvailable);
 
     }
 
@@ -71,7 +74,6 @@ public class AddCar extends javax.swing.JFrame {
         listorders = new javax.swing.JLabel();
         employees = new javax.swing.JLabel();
         customers = new javax.swing.JLabel();
-        financial = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         cars = new javax.swing.JLabel();
@@ -83,9 +85,6 @@ public class AddCar extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
 
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rentcar/images/logo_app.png"))); // NOI18N
 
@@ -351,11 +350,6 @@ public class AddCar extends javax.swing.JFrame {
         });
         kGradientPanel1.add(customers, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 420, 187, 57));
 
-        financial.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        financial.setForeground(new java.awt.Color(0, 83, 131));
-        financial.setText("Financial");
-        kGradientPanel1.add(financial, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 490, 187, 57));
-
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rentcar/images/logo-1.png"))); // NOI18N
@@ -429,18 +423,7 @@ public class AddCar extends javax.swing.JFrame {
                 jLabel23MouseClicked(evt);
             }
         });
-        kGradientPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 560, 187, 57));
-
-        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rentcar/images/logo-1.png"))); // NOI18N
-        kGradientPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 570, -1, 40));
-
-        jLabel22.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(0, 83, 131));
-        jLabel22.setText("MyProfile");
-        kGradientPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 630, 187, 57));
-
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rentcar/images/logo-1.png"))); // NOI18N
-        kGradientPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 640, -1, 40));
+        kGradientPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 490, 187, 57));
 
         getContentPane().add(kGradientPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -474,7 +457,7 @@ public class AddCar extends javax.swing.JFrame {
 
             String status = statusGroup.getSelection().getActionCommand();
 
-            String insertQuery = "INSERT INTO tb_mobil VALUES ('1','"
+            String insertQuery = "INSERT INTO tb_mobil VALUES ('0','"
                     + merk.getText() + "','"
                     + fee.getText() + "','"
                     + status + "','"
@@ -591,7 +574,6 @@ public class AddCar extends javax.swing.JFrame {
     private javax.swing.JLabel dashboard;
     private javax.swing.JLabel employees;
     private javax.swing.JTextField fee;
-    private javax.swing.JLabel financial;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -599,9 +581,7 @@ public class AddCar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
@@ -609,7 +589,6 @@ public class AddCar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;

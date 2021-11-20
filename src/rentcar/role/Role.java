@@ -58,27 +58,23 @@ public class Role extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         userLogin = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        btnLogin = new com.k33ptoo.components.KButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         roleList = new javax.swing.JTable();
-        btnLogin = new com.k33ptoo.components.KButton();
         listorders = new javax.swing.JLabel();
         employees = new javax.swing.JLabel();
         customers = new javax.swing.JLabel();
-        financial = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel23 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         dashboard = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         cars = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
 
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rentcar/images/logo_app.png"))); // NOI18N
 
@@ -132,19 +128,6 @@ public class Role extends javax.swing.JFrame {
             }
         });
 
-        roleList.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "Role Id", "Role Name"
-            }
-        ));
-        jScrollPane1.setViewportView(roleList);
-
         btnLogin.setText("Add Role");
         btnLogin.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnLogin.setkBackGroundColor(new java.awt.Color(75, 160, 175));
@@ -158,6 +141,33 @@ public class Role extends javax.swing.JFrame {
                 btnLoginActionPerformed(evt);
             }
         });
+
+        roleList.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Id", "Role Name"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        roleList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                roleListMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(roleList);
 
         javax.swing.GroupLayout kGradientPanel2Layout = new javax.swing.GroupLayout(kGradientPanel2);
         kGradientPanel2.setLayout(kGradientPanel2Layout);
@@ -177,12 +187,13 @@ public class Role extends javax.swing.JFrame {
             .addGroup(kGradientPanel2Layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 872, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel24)
                     .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 850, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(kGradientPanel2Layout.createSequentialGroup()
+                            .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(663, 663, 663))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         kGradientPanel2Layout.setVerticalGroup(
@@ -203,8 +214,8 @@ public class Role extends javax.swing.JFrame {
                 .addGap(14, 14, 14)
                 .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(179, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(227, Short.MAX_VALUE))
         );
 
         kGradientPanel1.add(kGradientPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 0, 1470, 780));
@@ -234,10 +245,43 @@ public class Role extends javax.swing.JFrame {
         });
         kGradientPanel1.add(customers, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 420, 187, 57));
 
-        financial.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        financial.setForeground(new java.awt.Color(0, 83, 131));
-        financial.setText("Financial");
-        kGradientPanel1.add(financial, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 490, 187, 57));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rentcar/images/logo-1.png"))); // NOI18N
+        kGradientPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, -1, 40));
+
+        dashboard.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        dashboard.setForeground(new java.awt.Color(0, 83, 131));
+        dashboard.setText("Dashboard");
+        dashboard.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                dashboardMouseClicked(evt);
+            }
+        });
+        kGradientPanel1.add(dashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 187, 57));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rentcar/images/logo-1.png"))); // NOI18N
+        kGradientPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, -1, 40));
+
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rentcar/images/logo-1.png"))); // NOI18N
+        kGradientPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 360, -1, 40));
+
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rentcar/images/logo-1.png"))); // NOI18N
+        kGradientPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 430, -1, 40));
+
+        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rentcar/images/logo_app-removebg-preview (1).png"))); // NOI18N
+        kGradientPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, -1));
+
+        cars.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        cars.setForeground(new java.awt.Color(0, 83, 131));
+        cars.setText("Cars");
+        cars.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                carsMouseClicked(evt);
+            }
+        });
+        kGradientPanel1.add(cars, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 280, 187, 57));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rentcar/images/logo-1.png"))); // NOI18N
+        kGradientPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, -1, 40));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -269,56 +313,7 @@ public class Role extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        kGradientPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 560, 320, 60));
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rentcar/images/logo-1.png"))); // NOI18N
-        kGradientPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, -1, 40));
-
-        dashboard.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        dashboard.setForeground(new java.awt.Color(0, 83, 131));
-        dashboard.setText("Dashboard");
-        dashboard.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                dashboardMouseClicked(evt);
-            }
-        });
-        kGradientPanel1.add(dashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 187, 57));
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rentcar/images/logo-1.png"))); // NOI18N
-        kGradientPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, -1, 40));
-
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rentcar/images/logo-1.png"))); // NOI18N
-        kGradientPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 360, -1, 40));
-
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rentcar/images/logo-1.png"))); // NOI18N
-        kGradientPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 430, -1, 40));
-
-        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rentcar/images/logo-1.png"))); // NOI18N
-        kGradientPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 500, -1, 40));
-
-        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rentcar/images/logo_app-removebg-preview (1).png"))); // NOI18N
-        kGradientPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, -1));
-
-        jLabel22.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(0, 83, 131));
-        jLabel22.setText("MyProfile");
-        kGradientPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 630, 187, 57));
-
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rentcar/images/logo-1.png"))); // NOI18N
-        kGradientPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 640, -1, 40));
-
-        cars.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        cars.setForeground(new java.awt.Color(0, 83, 131));
-        cars.setText("Cars");
-        cars.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                carsMouseClicked(evt);
-            }
-        });
-        kGradientPanel1.add(cars, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 280, 187, 57));
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rentcar/images/logo-1.png"))); // NOI18N
-        kGradientPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, -1, 40));
+        kGradientPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 490, 320, 60));
 
         getContentPane().add(kGradientPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -355,6 +350,17 @@ public class Role extends javax.swing.JFrame {
         // TODO add your handling code here:
         menuNav.customer(this);
     }//GEN-LAST:event_customersMouseClicked
+
+    private void roleListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_roleListMouseClicked
+
+        int baris = roleList.rowAtPoint(evt.getPoint());
+
+        AddRole AddRole = new AddRole();
+        AddRole.setData(roleList, baris);
+
+        menuNav.openMenuWithData(this , AddRole);
+
+    }//GEN-LAST:event_roleListMouseClicked
 
     /**
      * @param args the command line arguments
@@ -423,23 +429,19 @@ public class Role extends javax.swing.JFrame {
     private javax.swing.JLabel customers;
     private javax.swing.JLabel dashboard;
     private javax.swing.JLabel employees;
-    private javax.swing.JLabel financial;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;

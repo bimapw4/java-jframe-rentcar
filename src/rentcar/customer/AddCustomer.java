@@ -65,11 +65,10 @@ public class AddCustomer extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         username = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
-        pass = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
         phone = new javax.swing.JTextField();
+        pass = new javax.swing.JPasswordField();
         listorders = new javax.swing.JLabel();
-        financial = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         dashboard = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -83,9 +82,6 @@ public class AddCustomer extends javax.swing.JFrame {
         customers = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -224,16 +220,6 @@ public class AddCustomer extends javax.swing.JFrame {
         jLabel18.setForeground(new java.awt.Color(75, 160, 175));
         jLabel18.setText("Password :");
 
-        pass.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        pass.setForeground(new java.awt.Color(75, 160, 175));
-        pass.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(75, 160, 175)));
-        pass.setSelectionColor(new java.awt.Color(0, 153, 153));
-        pass.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passActionPerformed(evt);
-            }
-        });
-
         jLabel19.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(75, 160, 175));
         jLabel19.setText("Phone Number :");
@@ -245,6 +231,14 @@ public class AddCustomer extends javax.swing.JFrame {
         phone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 phoneActionPerformed(evt);
+            }
+        });
+
+        pass.setForeground(new java.awt.Color(75, 160, 175));
+        pass.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(75, 160, 175)));
+        pass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passActionPerformed(evt);
             }
         });
 
@@ -275,23 +269,25 @@ public class AddCustomer extends javax.swing.JFrame {
                         .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(kGradientPanel2Layout.createSequentialGroup()
-                                .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel7)
-                                    .addComponent(nik, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(nik, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE)
+                                    .addComponent(email, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE)
                                     .addComponent(jLabel9)
-                                    .addComponent(btnLogin2, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel18))
+                                    .addGroup(kGradientPanel2Layout.createSequentialGroup()
+                                        .addComponent(btnLogin2, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(55, 55, 55))
+                                    .addComponent(jLabel18)
+                                    .addComponent(pass))
                                 .addGap(80, 80, 80)
                                 .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel8)
-                                    .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel12)
-                                    .addComponent(phone, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel19))))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel19)
+                                    .addComponent(phone, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(556, Short.MAX_VALUE))
         );
         kGradientPanel2Layout.setVerticalGroup(
             kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -308,20 +304,14 @@ public class AddCustomer extends javax.swing.JFrame {
                 .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
-                .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(kGradientPanel2Layout.createSequentialGroup()
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel2Layout.createSequentialGroup()
                         .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(kGradientPanel2Layout.createSequentialGroup()
-                                .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(kGradientPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel7)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(nik, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(kGradientPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(nik, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(34, 34, 34)
                                 .addComponent(jLabel9)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -329,20 +319,28 @@ public class AddCustomer extends javax.swing.JFrame {
                             .addGroup(kGradientPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel12)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(kGradientPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(86, 86, 86)))
                         .addGap(28, 28, 28)
-                        .addComponent(jLabel18)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel18)
+                            .addComponent(jLabel19))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(phone, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(kGradientPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel19)
+                        .addGap(85, 85, 85)
+                        .addComponent(btnLogin2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(184, 184, 184))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(phone, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
-                .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLogin2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(184, 184, 184))
+                        .addComponent(btnLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(194, 194, 194))))
         );
 
         kGradientPanel1.add(kGradientPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 0, 1470, 780));
@@ -351,11 +349,6 @@ public class AddCustomer extends javax.swing.JFrame {
         listorders.setForeground(new java.awt.Color(0, 83, 131));
         listorders.setText("List Orders");
         kGradientPanel1.add(listorders, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 187, 57));
-
-        financial.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        financial.setForeground(new java.awt.Color(0, 83, 131));
-        financial.setText("Financial");
-        kGradientPanel1.add(financial, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 490, 187, 57));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rentcar/images/logo-1.png"))); // NOI18N
         kGradientPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, -1, 40));
@@ -430,18 +423,7 @@ public class AddCustomer extends javax.swing.JFrame {
         jLabel23.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(0, 83, 131));
         jLabel23.setText("Role");
-        kGradientPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 560, 187, 57));
-
-        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rentcar/images/logo-1.png"))); // NOI18N
-        kGradientPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 570, -1, 40));
-
-        jLabel22.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(0, 83, 131));
-        jLabel22.setText("MyProfile");
-        kGradientPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 630, 187, 57));
-
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rentcar/images/logo-1.png"))); // NOI18N
-        kGradientPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 640, -1, 40));
+        kGradientPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 490, 187, 57));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -487,9 +469,9 @@ public class AddCustomer extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
 
-           int number = Integer.parseInt(nik.getText());
+
             String insertQuery = "INSERT INTO tb_customer VALUES ('"
-                    + number + "', '"
+                    + nik.getText() + "', '"
                     + name.getText() + "', '"
                     + email.getText() + "', '"
                     + username.getText() + "', '"
@@ -499,7 +481,7 @@ public class AddCustomer extends javax.swing.JFrame {
             PreparedStatement prepare = con.prepareStatement(insertQuery);
             prepare.execute();
             JOptionPane.showMessageDialog(this, "Successfully added new customer");
-            menuNav.login(this);
+            menuNav.customer(this);
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
@@ -521,13 +503,13 @@ public class AddCustomer extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_usernameActionPerformed
 
-    private void passActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passActionPerformed
-
     private void phoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_phoneActionPerformed
+
+    private void passActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passActionPerformed
 
     /**
      * @param args the command line arguments
@@ -572,7 +554,6 @@ public class AddCustomer extends javax.swing.JFrame {
     private javax.swing.JLabel dashboard;
     private javax.swing.JTextField email;
     private javax.swing.JLabel employees;
-    private javax.swing.JLabel financial;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -580,17 +561,14 @@ public class AddCustomer extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -601,7 +579,7 @@ public class AddCustomer extends javax.swing.JFrame {
     private javax.swing.JLabel listorders;
     private javax.swing.JTextField name;
     private javax.swing.JTextField nik;
-    private javax.swing.JTextField pass;
+    private javax.swing.JPasswordField pass;
     private javax.swing.JTextField phone;
     private javax.swing.JLabel userLogin;
     private javax.swing.JTextField username;

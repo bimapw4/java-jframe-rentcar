@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import rentcar.DbConnection;
 import rentcar.MenuNavigation;
 
@@ -23,6 +24,7 @@ public class AddRole extends javax.swing.JFrame {
     private Connection con;
     private Statement statment;
     private MenuNavigation menuNav;
+    private int roleId;
 
     /**
      * Creates new form AddCar
@@ -34,6 +36,9 @@ public class AddRole extends javax.swing.JFrame {
         con = DB.conn;
         statment = DB.stmt;
         this.menuNav = new MenuNavigation();
+        btnUpdate.setVisible(false);
+        btnDelete.setVisible(false);
+        title.setText("Add Role");
 
     }
 
@@ -50,7 +55,7 @@ public class AddRole extends javax.swing.JFrame {
         statusGroup = new javax.swing.ButtonGroup();
         kGradientPanel1 = new keeptoo.KGradientPanel();
         kGradientPanel2 = new keeptoo.KGradientPanel();
-        jLabel29 = new javax.swing.JLabel();
+        title = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel24 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -60,22 +65,20 @@ public class AddRole extends javax.swing.JFrame {
         nama = new javax.swing.JTextField();
         btnLogin1 = new com.k33ptoo.components.KButton();
         btnLogin2 = new com.k33ptoo.components.KButton();
+        btnUpdate = new com.k33ptoo.components.KButton();
+        btnDelete = new com.k33ptoo.components.KButton();
         listorders = new javax.swing.JLabel();
         employees = new javax.swing.JLabel();
         customers = new javax.swing.JLabel();
-        financial = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         dashboard = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
         cars = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -95,9 +98,8 @@ public class AddRole extends javax.swing.JFrame {
         kGradientPanel2.setkStartColor(new java.awt.Color(255, 255, 255));
         kGradientPanel2.setPreferredSize(new java.awt.Dimension(1376, 768));
 
-        jLabel29.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel29.setForeground(new java.awt.Color(75, 160, 175));
-        jLabel29.setText("Add Role");
+        title.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        title.setForeground(new java.awt.Color(75, 160, 175));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(0, 83, 131)));
@@ -173,6 +175,34 @@ public class AddRole extends javax.swing.JFrame {
             }
         });
 
+        btnUpdate.setText("Update");
+        btnUpdate.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        btnUpdate.setkBackGroundColor(new java.awt.Color(75, 160, 175));
+        btnUpdate.setkEndColor(new java.awt.Color(255, 255, 255));
+        btnUpdate.setkHoverEndColor(new java.awt.Color(255, 255, 255));
+        btnUpdate.setkHoverForeGround(new java.awt.Color(255, 255, 204));
+        btnUpdate.setkHoverStartColor(new java.awt.Color(75, 160, 175));
+        btnUpdate.setkStartColor(new java.awt.Color(75, 160, 175));
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
+
+        btnDelete.setText("Delete");
+        btnDelete.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        btnDelete.setkBackGroundColor(new java.awt.Color(75, 160, 175));
+        btnDelete.setkEndColor(new java.awt.Color(255, 255, 255));
+        btnDelete.setkHoverEndColor(new java.awt.Color(255, 255, 255));
+        btnDelete.setkHoverForeGround(new java.awt.Color(255, 255, 204));
+        btnDelete.setkHoverStartColor(new java.awt.Color(75, 160, 175));
+        btnDelete.setkStartColor(new java.awt.Color(75, 160, 175));
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout kGradientPanel2Layout = new javax.swing.GroupLayout(kGradientPanel2);
         kGradientPanel2.setLayout(kGradientPanel2Layout);
         kGradientPanel2Layout.setHorizontalGroup(
@@ -193,18 +223,24 @@ public class AddRole extends javax.swing.JFrame {
                     .addGroup(kGradientPanel2Layout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel24)))
                     .addGroup(kGradientPanel2Layout.createSequentialGroup()
                         .addGap(68, 68, 68)
-                        .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(kGradientPanel2Layout.createSequentialGroup()
                                 .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel7)
-                                    .addComponent(nama, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnLogin2, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(463, 463, 463)))))
+                                    .addComponent(nama, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(330, 330, 330))
+                            .addGroup(kGradientPanel2Layout.createSequentialGroup()
+                                .addComponent(btnLogin2, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                        .addComponent(btnLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         kGradientPanel2Layout.setVerticalGroup(
@@ -219,7 +255,7 @@ public class AddRole extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47)
@@ -229,7 +265,9 @@ public class AddRole extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 272, Short.MAX_VALUE)
                 .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLogin2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnLogin2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(184, 184, 184))
         );
 
@@ -260,11 +298,6 @@ public class AddRole extends javax.swing.JFrame {
         });
         kGradientPanel1.add(customers, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 420, 187, 57));
 
-        financial.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        financial.setForeground(new java.awt.Color(0, 83, 131));
-        financial.setText("Financial");
-        kGradientPanel1.add(financial, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 490, 187, 57));
-
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rentcar/images/logo-1.png"))); // NOI18N
         kGradientPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, -1, 40));
 
@@ -286,9 +319,6 @@ public class AddRole extends javax.swing.JFrame {
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rentcar/images/logo-1.png"))); // NOI18N
         kGradientPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 430, -1, 40));
-
-        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rentcar/images/logo-1.png"))); // NOI18N
-        kGradientPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 500, -1, 40));
 
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rentcar/images/logo_app-removebg-preview (1).png"))); // NOI18N
         kGradientPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, -1));
@@ -323,15 +353,7 @@ public class AddRole extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        kGradientPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 560, 320, 60));
-
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rentcar/images/logo-1.png"))); // NOI18N
-        kGradientPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 640, -1, 40));
-
-        jLabel22.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(0, 83, 131));
-        jLabel22.setText("MyProfile");
-        kGradientPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 630, 187, 57));
+        kGradientPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 490, 320, 60));
 
         cars.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         cars.setForeground(new java.awt.Color(0, 83, 131));
@@ -364,17 +386,15 @@ public class AddRole extends javax.swing.JFrame {
     private void btnLogin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogin1ActionPerformed
         // TODO add your handling code here:
         try {
-            
 
             String insertQuery = "INSERT INTO tb_role VALUES ('0','"
                     + nama.getText() + "')";
-            
+
             PreparedStatement prepare = con.prepareStatement(insertQuery);
             prepare.execute();
             JOptionPane.showMessageDialog(this, "Role Added");
             menuNav.Role(this);
-            
-            
+
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
             System.err.println(ex.getMessage());
@@ -383,7 +403,7 @@ public class AddRole extends javax.swing.JFrame {
 
     private void btnLogin2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogin2ActionPerformed
         // TODO add your handling code here:
-        menuNav.car(this);
+        menuNav.Role(this);
     }//GEN-LAST:event_btnLogin2ActionPerformed
 
     private void dashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardMouseClicked
@@ -405,6 +425,64 @@ public class AddRole extends javax.swing.JFrame {
         // TODO add your handling code here:
         menuNav.car(this);
     }//GEN-LAST:event_carsMouseClicked
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
+        try {
+
+            String insertQuery = "UPDATE tb_role SET "
+                    + "role='" + nama.getText() + "'"
+                    + "WHERE id_role = '" + roleId + "'";
+            System.out.println("SQL QUERY : " + insertQuery);
+
+            PreparedStatement prepare = con.prepareStatement(insertQuery);
+            prepare.execute();
+            JOptionPane.showMessageDialog(this, "Role Updated");
+            menuNav.Role(this);
+
+            System.out.println(insertQuery);
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+            System.err.println(ex.getMessage());
+        }
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        int option = JOptionPane.showConfirmDialog(this, "Are you sure delete this data?");
+        if (option == 0) {
+            delete();
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
+    public void setData(JTable roleList, int row) {
+        roleId = Integer.parseInt(roleList.getValueAt(row, 0).toString());
+
+        nama.setText(roleList.getValueAt(row, 1).toString());
+
+        btnUpdate.setVisible(true);
+        btnDelete.setVisible(true);
+
+        btnLogin1.setVisible(false);
+        title.setText("Update Role");
+    }
+
+    private void delete() {
+        try {
+
+            String insertQuery = "DELETE from tb_role WHERE id_role='" + roleId + "'";
+
+            PreparedStatement prepare = con.prepareStatement(insertQuery);
+            prepare.execute();
+            JOptionPane.showMessageDialog(this, "Delete Success");
+
+            menuNav.Role(this);
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+            System.err.println(ex.getMessage());
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -445,29 +523,26 @@ public class AddRole extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.k33ptoo.components.KButton btnDelete;
     private com.k33ptoo.components.KButton btnLogin1;
     private com.k33ptoo.components.KButton btnLogin2;
+    private com.k33ptoo.components.KButton btnUpdate;
     private javax.swing.JLabel cars;
     private javax.swing.JLabel customers;
     private javax.swing.JLabel dashboard;
     private javax.swing.JLabel employees;
-    private javax.swing.JLabel financial;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -476,6 +551,7 @@ public class AddRole extends javax.swing.JFrame {
     private javax.swing.JLabel listorders;
     private javax.swing.JTextField nama;
     private javax.swing.ButtonGroup statusGroup;
+    private javax.swing.JLabel title;
     private javax.swing.JLabel userLogin;
     // End of variables declaration//GEN-END:variables
 }

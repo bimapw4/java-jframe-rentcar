@@ -64,7 +64,6 @@ public class Employee extends javax.swing.JFrame {
         employeeList = new javax.swing.JTable();
         listorders = new javax.swing.JLabel();
         customers = new javax.swing.JLabel();
-        financial = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         employees = new javax.swing.JLabel();
@@ -78,9 +77,6 @@ public class Employee extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -201,6 +197,11 @@ public class Employee extends javax.swing.JFrame {
                 "NO", "name", "email", "phone"
             }
         ));
+        employeeList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                employeeListMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(employeeList);
 
         javax.swing.GroupLayout kGradientPanel2Layout = new javax.swing.GroupLayout(kGradientPanel2);
@@ -280,11 +281,6 @@ public class Employee extends javax.swing.JFrame {
             }
         });
         kGradientPanel1.add(customers, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 420, 187, 57));
-
-        financial.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        financial.setForeground(new java.awt.Color(0, 83, 131));
-        financial.setText("Financial");
-        kGradientPanel1.add(financial, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 490, 187, 57));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -366,18 +362,7 @@ public class Employee extends javax.swing.JFrame {
                 jLabel23MouseClicked(evt);
             }
         });
-        kGradientPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 560, 187, 57));
-
-        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rentcar/images/logo-1.png"))); // NOI18N
-        kGradientPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 570, -1, 40));
-
-        jLabel22.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(0, 83, 131));
-        jLabel22.setText("MyProfile");
-        kGradientPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 630, 187, 57));
-
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rentcar/images/logo-1.png"))); // NOI18N
-        kGradientPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 640, -1, 40));
+        kGradientPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 490, 187, 57));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -441,6 +426,16 @@ public class Employee extends javax.swing.JFrame {
         menuNav.adminDashboard(this);
 
     }//GEN-LAST:event_dashboardMouseClicked
+
+    private void employeeListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_employeeListMouseClicked
+        // TODO add your handling code here:
+        int baris = employeeList.rowAtPoint(evt.getPoint());
+        
+        AddEmployee AddEmployee = new AddEmployee();
+        AddEmployee.setData(employeeList, baris);
+        
+        menuNav.openMenuWithData(this , AddEmployee);
+    }//GEN-LAST:event_employeeListMouseClicked
 
     private void loadData() {
         try {
@@ -524,22 +519,18 @@ public class Employee extends javax.swing.JFrame {
     private javax.swing.JLabel dashboard;
     private javax.swing.JTable employeeList;
     private javax.swing.JLabel employees;
-    private javax.swing.JLabel financial;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;

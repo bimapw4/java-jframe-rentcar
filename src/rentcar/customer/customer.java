@@ -70,7 +70,6 @@ public class customer extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         custList = new javax.swing.JTable();
         listorders = new javax.swing.JLabel();
-        financial = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         customers = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
@@ -84,9 +83,6 @@ public class customer extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         employees = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
 
         kGradientPanel3.setkEndColor(new java.awt.Color(208, 233, 255));
         kGradientPanel3.setkStartColor(new java.awt.Color(208, 233, 255));
@@ -361,11 +357,6 @@ public class customer extends javax.swing.JFrame {
         });
         kGradientPanel1.add(listorders, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 187, 57));
 
-        financial.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        financial.setForeground(new java.awt.Color(0, 83, 131));
-        financial.setText("Financial");
-        kGradientPanel1.add(financial, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 490, 187, 57));
-
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         customers.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -457,18 +448,7 @@ public class customer extends javax.swing.JFrame {
                 jLabel23MouseClicked(evt);
             }
         });
-        kGradientPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 560, 187, 57));
-
-        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rentcar/images/logo-1.png"))); // NOI18N
-        kGradientPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 570, -1, 40));
-
-        jLabel22.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(0, 83, 131));
-        jLabel22.setText("MyProfile");
-        kGradientPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 630, 187, 57));
-
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rentcar/images/logo-1.png"))); // NOI18N
-        kGradientPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 640, -1, 40));
+        kGradientPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 490, 187, 57));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -631,7 +611,6 @@ public class customer extends javax.swing.JFrame {
     private javax.swing.JLabel dashboard;
     private javax.swing.JTextField email1;
     private javax.swing.JLabel employees;
-    private javax.swing.JLabel financial;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -641,15 +620,12 @@ public class customer extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
