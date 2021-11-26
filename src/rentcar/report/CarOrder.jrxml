@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1e501c5e-7586-4a31-85d2-ac15f75a5dd8">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="3"/>
+	<queryString>
+		<![CDATA[select *, (select count(*) from tb_transaksi t where t.id_mobil = m.id_mobil) as jumlah_sewa from tb_mobil m, tb_tipe_mobil tp where m.id_tipe = tp.id_tipe order by jumlah_sewa desc]]>
+	</queryString>
+	<field name="id_mobil" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="merek" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="harga" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="status" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="id_tipe" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tipe" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="jumlah_sewa" class="java.lang.Long"/>
+	<variable name="merek_1" class="java.lang.Integer" resetType="Column" calculation="Count">
+		<variableExpression><![CDATA[$F{merek}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="120" splitType="Stretch">
+			<image>
+				<reportElement x="204" y="10" width="174" height="100" uuid="b0687c6a-9249-4654-9918-c97f235bb1f5"/>
+				<imageExpression><![CDATA["E:\\kulyah\\Semester 3\\AppProject\\logo_app-removebg-preview 1.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="66" splitType="Stretch">
+			<line>
+				<reportElement x="2" y="4" width="553" height="1" uuid="40b7ce77-c9f5-4f67-9226-5a1ce69d733e"/>
+			</line>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="436" y="5" width="100" height="20" uuid="e4558de9-5abc-45cd-8a03-d537afd0ee11"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="397" y="5" width="39" height="20" uuid="a0b8dc61-1bb8-4a31-976b-7b381783ae0b"/>
+				<text><![CDATA[Date :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="210" y="32" width="168" height="34" uuid="a5c7ba83-6a8f-4e4b-96ac-1211bea4b49b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="13"/>
+				</textElement>
+				<text><![CDATA[Laporan Penggunaan Mobil]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="38" splitType="Stretch">
+			<line>
+				<reportElement x="1" y="4" width="554" height="1" uuid="cb7f92a5-fa30-46e8-b885-eec6a60e9f83"/>
+			</line>
+			<line>
+				<reportElement x="0" y="35" width="554" height="1" uuid="9c9b0e54-8e79-4862-9e59-f4d04ee8e43e"/>
+			</line>
+			<staticText>
+				<reportElement x="2" y="4" width="100" height="29" uuid="0bfce616-f684-477b-ae65-1f2c309dc2d9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[id_mobil]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="104" y="5" width="100" height="28" uuid="9839e274-2ae2-4cd0-b740-37ecfc240509"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[merek]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="304" y="5" width="100" height="28" uuid="3d5c8de9-6013-43f0-bd6b-3b24850b6210"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[jumlah_sewa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="204" y="5" width="100" height="28" uuid="e5a77dd3-c30d-4af8-bf73-c3d809af9b2d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[Tipe]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="26" splitType="Stretch">
+			<line>
+				<reportElement x="2" y="22" width="554" height="1" uuid="fe183b2a-445e-4cd8-b90c-288a0759df03"/>
+			</line>
+			<textField>
+				<reportElement x="2" y="0" width="100" height="20" uuid="f1363fd5-650c-477e-ac32-9b5cddebff5e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id_mobil}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="102" y="0" width="102" height="20" uuid="01ae7232-44cc-4ae2-bfec-4959fbde4180"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{merek}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="204" y="0" width="100" height="20" uuid="354815b6-39f4-4b6f-9b4c-44c5960766aa"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{tipe}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="304" y="0" width="100" height="20" uuid="31ad5511-8ec3-4c53-8ef5-271dbafcbde3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{jumlah_sewa}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="29" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
