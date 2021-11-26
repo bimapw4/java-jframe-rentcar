@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import rentcar.DbConnection;
 import rentcar.MenuNavigation;
+import rentcar.history.DetailHistory;
 
 public class ListOrder extends javax.swing.JFrame {
 
@@ -63,7 +64,7 @@ public class ListOrder extends javax.swing.JFrame {
         kGradientPanel5 = new keeptoo.KGradientPanel();
         jLabel7 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        totalEm1 = new javax.swing.JLabel();
+        totalOrder = new javax.swing.JLabel();
         kGradientPanel6 = new keeptoo.KGradientPanel();
         jLabel8 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
@@ -144,7 +145,20 @@ public class ListOrder extends javax.swing.JFrame {
             new String [] {
                 "Start Date", "End Date", "ID Mobil", "Harga Sewa"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        TotalOrderTB.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TotalOrderTBMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(TotalOrderTB);
 
         kGradientPanel5.setkEndColor(new java.awt.Color(246, 245, 245));
@@ -168,8 +182,8 @@ public class ListOrder extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        totalEm1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        totalEm1.setText("0");
+        totalOrder.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        totalOrder.setText("0");
 
         javax.swing.GroupLayout kGradientPanel5Layout = new javax.swing.GroupLayout(kGradientPanel5);
         kGradientPanel5.setLayout(kGradientPanel5Layout);
@@ -180,7 +194,7 @@ public class ListOrder extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
-                .addComponent(totalEm1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(totalOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         kGradientPanel5Layout.setVerticalGroup(
@@ -189,7 +203,7 @@ public class ListOrder extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(kGradientPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(totalEm1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(totalOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(28, Short.MAX_VALUE))
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
         );
@@ -250,7 +264,15 @@ public class ListOrder extends javax.swing.JFrame {
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane3.setViewportView(FinisOrderTb);
 
         javax.swing.GroupLayout kGradientPanel2Layout = new javax.swing.GroupLayout(kGradientPanel2);
@@ -462,22 +484,31 @@ public class ListOrder extends javax.swing.JFrame {
         menuNav.Role(this);
 
     }//GEN-LAST:event_jLabel23MouseClicked
+
+    private void TotalOrderTBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TotalOrderTBMouseClicked
+        // TODO add your handling code here:
+        String NoPesanan = TotalOrderTB.getValueAt(TotalOrderTB.getSelectedRow(), 0).toString();
+        new ListOrderDetail(NoPesanan).setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_TotalOrderTBMouseClicked
     
      private void loadDataNotFinish() {
         try {
             DefaultTableModel model = (DefaultTableModel) TotalOrderTB.getModel();
             // clear data
             model.setRowCount(0);
-            String selectQuery = "SELECT * FROM tb_transaksi where not status = 'FINISH'";
+            String selectQuery = "SELECT * FROM tb_transaksi, tb_mobil where tb_transaksi.status != 'FINISH' "
+                    + "and tb_mobil.id_mobil = tb_transaksi.id_mobil";
             ResultSet result = statment.executeQuery(selectQuery);
             while (result.next()) {
                 model.addRow(new Object[]{
+                    result.getString("id_transaksi"),
                     result.getString("start_date"),
                     result.getString("end_date"),
-                    result.getString("id_mobil"),
+                    result.getString("merek"),
                     result.getString("harga_sewa"),
                     result.getString("id_user"),
-                    result.getString("status")
+                    result.getString("tb_transaksi.status")
                 });
 
                 TotalOrderTB.setModel(model);
@@ -494,9 +525,9 @@ public class ListOrder extends javax.swing.JFrame {
             while (result.next()) {
                 if (result.getString("count") != null) {
 
-                    totalEm.setText(result.getString("totalEm1"));
+                    totalOrder.setText(result.getString("count"));
                 } else {
-                    totalEm.setText("0");
+                    totalOrder.setText("0");
                 }
             }
         } catch (SQLException ex) {
@@ -511,7 +542,7 @@ public class ListOrder extends javax.swing.JFrame {
             while (result.next()) {
                 if (result.getString("count") != null) {
 
-                    totalEm.setText(result.getString("totalEm"));
+                    totalEm.setText(result.getString("count"));
                 } else {
                     totalEm.setText("0");
                 }
@@ -525,16 +556,17 @@ public class ListOrder extends javax.swing.JFrame {
             DefaultTableModel model = (DefaultTableModel) FinisOrderTb.getModel();
             // clear data
             model.setRowCount(0);
-            String selectQuery = "SELECT * FROM tb_transaksi where status = 'FINISH'";
+            String selectQuery = "SELECT * FROM tb_transaksi, tb_mobil where tb_transaksi.status = 'FINISH' "
+                    + "and tb_mobil.id_mobil = tb_transaksi.id_mobil";
             ResultSet result = statment.executeQuery(selectQuery);
             while (result.next()) {
                 model.addRow(new Object[]{
                     result.getString("start_date"),
                     result.getString("end_date"),
-                    result.getString("id_mobil"),
+                    result.getString("merek"),
                     result.getString("harga_sewa"),
                     result.getString("id_user"),
-                    result.getString("status")
+                    result.getString("tb_transaksi.status")
                 });
 
                 FinisOrderTb.setModel(model);
@@ -611,7 +643,7 @@ public class ListOrder extends javax.swing.JFrame {
     private keeptoo.KGradientPanel kGradientPanel6;
     private javax.swing.JLabel listorders;
     private javax.swing.JLabel totalEm;
-    private javax.swing.JLabel totalEm1;
+    private javax.swing.JLabel totalOrder;
     private javax.swing.JLabel userLogin;
     // End of variables declaration//GEN-END:variables
 }
