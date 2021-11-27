@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import rentcar.DbConnection;
 import rentcar.MenuNavigation;
+import rentcar.UserSession;
 
 /**
  *
@@ -29,6 +30,8 @@ public class ListOrderDetail extends javax.swing.JFrame {
     private Statement statment;
     private Connection con;
     private String NoPesan;
+    String ID;
+
     public ListOrderDetail(String NoPesanan) {
         initComponents();
         
@@ -36,6 +39,8 @@ public class ListOrderDetail extends javax.swing.JFrame {
         
         NoPesan = NoPesanan;
         
+        ID = UserSession.getUserID();
+
         DbConnection DB = new DbConnection();
         DB.Connect();
         con = DB.conn;
@@ -460,8 +465,8 @@ public class ListOrderDetail extends javax.swing.JFrame {
         try {
 
             String insertQuery = "UPDATE tb_transaksi SET "
-                    + "status = 'APPROVED'"
-                    + "WHERE id_transaksi = '" + NoPesan + "'";
+                    + "status = 'APPROVED', id_karyawan = '" + ID
+                    + "' WHERE id_transaksi = '" + NoPesan + "'";
             
             PreparedStatement prepare = con.prepareStatement(insertQuery);
             prepare.execute();

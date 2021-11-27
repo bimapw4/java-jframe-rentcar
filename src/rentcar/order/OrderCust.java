@@ -406,10 +406,16 @@ public class OrderCust extends javax.swing.JFrame {
             + '1' + "','"
             + ID + "','"
             + carList.getValueAt(carList.getSelectedRow(),3) + "')";
-//            
-            System.out.println(insertQuery);
             PreparedStatement prepare = con.prepareStatement(insertQuery);
             prepare.execute();
+            
+            String updateQuery = "UPDATE tb_mobil SET "
+                    + "status = 'BOOKED'"
+                    + "WHERE id_mobil = '" + carList.getValueAt(carList.getSelectedRow(),0) + "'";
+            
+            PreparedStatement prepareUpdate = con.prepareStatement(updateQuery);
+            prepareUpdate.execute();
+            
             JOptionPane.showMessageDialog(this, "Transaction Added");
             menuNav.ListHistory(this);
 //        
@@ -428,7 +434,7 @@ public class OrderCust extends javax.swing.JFrame {
             DefaultTableModel model = (DefaultTableModel) carList.getModel();
             // clear data
             model.setRowCount(0);
-            String selectQuery = "SELECT * FROM tb_mobil m, tb_tipe_mobil tp where m.id_tipe = tp.id_tipe";
+            String selectQuery = "SELECT * FROM tb_mobil m, tb_tipe_mobil tp where m.id_tipe = tp.id_tipe and status = 'AVAILABLE'";
             ResultSet result = statment.executeQuery(selectQuery);
             while (result.next()) {
                 model.addRow(new Object[]{
