@@ -32,22 +32,23 @@ public class DetailHistory extends javax.swing.JFrame {
      * Creates new form DetailHistory
      */
     private MenuNavigation menuNav;
-        private Statement statment;
+    private Statement statment;
     private Connection con;
     private String NoPesan;
-    
+
     private JFileChooser fc = new JFileChooser();
+
     public DetailHistory(String NoPesanan) {
         initComponents();
         this.menuNav = new MenuNavigation();
-        
+
         NoPesan = NoPesanan;
-        
+
         DbConnection DB = new DbConnection();
         DB.Connect();
         con = DB.conn;
         statment = DB.stmt;
-        
+
         loadData();
     }
 
@@ -486,7 +487,7 @@ public class DetailHistory extends javax.swing.JFrame {
 
     private void PayNowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PayNowActionPerformed
         // TODO add your handling code here:
-       new PaymentPage(NoPesan).setVisible(true);
+        new PaymentPage(NoPesan).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_PayNowActionPerformed
 
@@ -495,8 +496,8 @@ public class DetailHistory extends javax.swing.JFrame {
         menuNav.ListHistory(this);
 
     }//GEN-LAST:event_CancelActionPerformed
-    
-     private void loadData() {
+
+    private void loadData() {
         try {
             // clear data
             String selectQuery = "SELECT * FROM tb_transaksi, tb_mobil "
@@ -507,15 +508,16 @@ public class DetailHistory extends javax.swing.JFrame {
                 Harga.setText(result.getString("harga_sewa"));
                 Status.setText(result.getString("status"));
                 StartDate.setText(result.getString("start_date"));
-                EndDate.setText( result.getString("end_date"));
+                EndDate.setText(result.getString("end_date"));
             }
+          
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
 
-         System.out.println(NoPesan);
+        System.out.println(NoPesan);
     }
-    
+
     /**
      * @param args the command line arguments
      */

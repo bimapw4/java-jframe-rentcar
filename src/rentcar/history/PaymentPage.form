@@ -253,10 +253,7 @@
                                       </Group>
                                   </Group>
                                   <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="btnUpload1" min="-2" pref="134" max="-2" attributes="0"/>
-                                      <Component id="btnUpload" min="-2" pref="134" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="btnUpload" min="-2" pref="134" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace pref="323" max="32767" attributes="0"/>
@@ -292,10 +289,7 @@
                               <Component id="btnUpload" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblFoto" min="-2" pref="131" max="-2" attributes="0"/>
-                              <Component id="btnUpload1" min="-2" pref="43" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="lblFoto" min="-2" pref="131" max="-2" attributes="0"/>
                           <EmptySpace pref="235" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -394,15 +388,6 @@
                 <Component class="javax.swing.JTextField" name="jTextField1">
                 </Component>
                 <Component class="javax.swing.JLabel" name="lblFoto">
-                </Component>
-                <Component class="javax.swing.JButton" name="btnUpload1">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="save"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnUpload1MouseClicked"/>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUpload1ActionPerformed"/>
-                  </Events>
                 </Component>
               </SubComponents>
             </Container>

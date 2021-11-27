@@ -149,6 +149,7 @@ public class MenuNavigation {
         ListOrder.setVisible(true);
         current.setVisible(false);
     }
+    
 
     // redirect to other jForm with data carier
     public void openMenuWithData(Window current, JFrame nextFrame) {

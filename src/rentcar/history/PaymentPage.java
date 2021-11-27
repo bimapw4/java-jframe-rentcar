@@ -5,9 +5,11 @@
  */
 package rentcar.history;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,8 +17,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import rentcar.DbConnection;
 import rentcar.MenuNavigation;
 
@@ -35,6 +40,7 @@ public class PaymentPage extends javax.swing.JFrame {
     private JFileChooser fc = new JFileChooser();
 
     private String NoPesan;
+
     public PaymentPage(String NoPesanan) {
         initComponents();
         DbConnection DB = new DbConnection();
@@ -76,7 +82,6 @@ public class PaymentPage extends javax.swing.JFrame {
         btnUpload = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         lblFoto = new javax.swing.JLabel();
-        btnUpload1 = new javax.swing.JButton();
         employees = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         dashboard = new javax.swing.JLabel();
@@ -177,18 +182,6 @@ public class PaymentPage extends javax.swing.JFrame {
             }
         });
 
-        btnUpload1.setText("save");
-        btnUpload1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnUpload1MouseClicked(evt);
-            }
-        });
-        btnUpload1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpload1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -225,9 +218,7 @@ public class PaymentPage extends javax.swing.JFrame {
                                 .addGap(92, 92, 92)
                                 .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(41, 41, 41)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnUpload1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnUpload, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(btnUpload, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(323, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -255,9 +246,7 @@ public class PaymentPage extends javax.swing.JFrame {
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnUpload, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(84, 84, 84)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnUpload1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(235, Short.MAX_VALUE))
         );
 
@@ -406,18 +395,33 @@ public class PaymentPage extends javax.swing.JFrame {
 
     private void btnUploadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUploadActionPerformed
         // TODO add your handling code here:
-        int buka = fc.showOpenDialog(btnUpload);
-        if (buka == JFileChooser.APPROVE_OPTION) {
-            String sumber = fc.getSelectedFile().getPath();
-            lblFoto.setIcon(new ImageIcon(sumber));
-            File file = new File(sumber);
+        JFileChooser chooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(
+                "JPG, GIF, and PNG Images", "jpg", "gif", "png");
+        chooser.setFileFilter(filter);
+        int returnVal = chooser.showOpenDialog(this);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            File file = chooser.getSelectedFile();
+            System.out.println("You chose to open this file: "
+                    + file.getName());
+            BufferedImage image;
             try {
-                FileInputStream fis = new FileInputStream(sumber);
-            } catch (Exception ex) {
+                image = ImageIO.read(file);
+                //ubah lokasi file
+                ImageIO.write(image, "jpg", new File("D:/" + file.getName()));
+                String insertQuery = "UPDATE tb_transaksi SET bukti_pembayaran =  '" + file.getName() + "'WHERE id_transaksi = '" + NoPesan + "'";
+                System.out.println("SQL QUERY : " + insertQuery);
+                PreparedStatement prepare = con.prepareStatement(insertQuery);
+                prepare.execute();
+                JOptionPane.showMessageDialog(null, "Upload Payment Success");
+                menuNav.ThankYouPage(this);
+            } catch (IOException ex) {
+                Logger.getLogger(PaymentPage.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
                 Logger.getLogger(PaymentPage.class.getName()).log(Level.SEVERE, null, ex);
             }
-
         }
+
     }//GEN-LAST:event_btnUploadActionPerformed
 
     private void cars1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cars1MouseClicked
@@ -441,29 +445,6 @@ public class PaymentPage extends javax.swing.JFrame {
 
         menuNav.dashboardCust(this);
     }//GEN-LAST:event_dashboardMouseClicked
-
-    private void btnUpload1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpload1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnUpload1MouseClicked
-
-    private void btnUpload1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpload1ActionPerformed
-        // TODO add your handling code here:
-        String sumber = fc.getSelectedFile().getPath();
-        try {
-            File fileGambar = new File(sumber);
-            FileInputStream fis = new FileInputStream(fileGambar);
-            String insertQuery = "UPDATE tb_transaksi SET bukti_pembayaran = ? WHERE id_transaksi = '" + NoPesan + "'";
-            System.out.println("SQL QUERY : " + insertQuery);
-            PreparedStatement prepare = con.prepareStatement(insertQuery);
-            prepare.setBinaryStream(1, fis, (int)fileGambar.length());
-            System.out.println("foto : " + fis);
-            prepare.execute();
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(PaymentPage.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(PaymentPage.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_btnUpload1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -502,7 +483,6 @@ public class PaymentPage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnUpload;
-    private javax.swing.JButton btnUpload1;
     private javax.swing.JLabel cars;
     private javax.swing.JLabel cars1;
     private javax.swing.JLabel dashboard;
