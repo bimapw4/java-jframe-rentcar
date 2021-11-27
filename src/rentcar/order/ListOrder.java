@@ -138,18 +138,25 @@ public class ListOrder extends javax.swing.JFrame {
 
         TotalOrderTB.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Start Date", "End Date", "ID Mobil", "Harga Sewa"
+                "ID Transaksi", "Start Date", "End Date", "Mobil", "Harga Sewa", "User", "Status"
             }
         ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -316,14 +323,14 @@ public class ListOrder extends javax.swing.JFrame {
                             .addComponent(kGradientPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(kGradientPanel2Layout.createSequentialGroup()
-                                .addGap(99, 99, 99)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(410, 410, 410)
+                                .addComponent(Export, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(kGradientPanel2Layout.createSequentialGroup()
-                                .addGap(91, 91, 91)
-                                .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(Export, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(50, 50, 50)
+                                .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 558, Short.MAX_VALUE)
+                                    .addComponent(jScrollPane3))))))
+                .addContainerGap(595, Short.MAX_VALUE))
         );
         kGradientPanel2Layout.setVerticalGroup(
             kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -513,7 +520,12 @@ public class ListOrder extends javax.swing.JFrame {
     private void TotalOrderTBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TotalOrderTBMouseClicked
         // TODO add your handling code here:
         String NoPesanan = TotalOrderTB.getValueAt(TotalOrderTB.getSelectedRow(), 0).toString();
-        new ListOrderDetail(NoPesanan).setVisible(true);
+        System.out.println(TotalOrderTB.getValueAt(TotalOrderTB.getSelectedRow(), 6));
+        if (TotalOrderTB.getValueAt(TotalOrderTB.getSelectedRow(), 6).equals("WAITING")) {
+            new ListOrderDetail(NoPesanan).setVisible(true);
+        } else {
+            new ListOrderDetailFinish(NoPesanan).setVisible(true);
+        }
         this.setVisible(false);
     }//GEN-LAST:event_TotalOrderTBMouseClicked
 
