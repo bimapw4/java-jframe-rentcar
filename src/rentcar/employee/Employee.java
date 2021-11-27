@@ -188,13 +188,13 @@ public class Employee extends javax.swing.JFrame {
 
         employeeList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "NO", "name", "email", "phone"
+                "Name", "Birth Date", "Email"
             }
         ));
         employeeList.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -446,11 +446,8 @@ public class Employee extends javax.swing.JFrame {
             ResultSet result = statment.executeQuery(selectQuery);
             while (result.next()) {
                 model.addRow(new Object[]{
-                    result.getInt("id_employe"),
                     result.getString("nama"),
                     result.getString("tanggal_lahir"),
-                    result.getString("username"),
-                    result.getString("password"),
                     result.getString("email")});
 
                 employeeList.setModel(model);
