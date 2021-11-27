@@ -28,13 +28,13 @@ public class OrderCust extends javax.swing.JFrame {
     private MenuNavigation menuNav;
     private Connection con;
     private Statement statment;
-
+    String ID;
     public OrderCust() {
         initComponents();
         this.menuNav = new MenuNavigation(); 
         
-        String ID = UserSession.getUserLogin();
-        userLogin.setText(ID);
+        String UserName = UserSession.getUserLogin();
+        userLogin.setText(UserName);
         
         DbConnection DB = new DbConnection();
         DB.Connect();
@@ -42,6 +42,8 @@ public class OrderCust extends javax.swing.JFrame {
         statment = DB.stmt;
         this.menuNav = new MenuNavigation();
         
+        ID = UserSession.getUserID();
+
         loadData();
     }
 
@@ -400,17 +402,17 @@ public class OrderCust extends javax.swing.JFrame {
             String insertQuery = "INSERT INTO tb_transaksi (id_transaksi,start_date,end_date,id_mobil,id_karyawan,id_user,harga_sewa) VALUES ('0','"
             + StartDate.getText() + "','"
             + EndDate.getText() + "','"
+            + carList.getValueAt(carList.getSelectedRow(),0) + "','"
             + '1' + "','"
-            + '1' + "','"
-            + '1' + "','"
+            + ID + "','"
             + carList.getValueAt(carList.getSelectedRow(),3) + "')";
-            
-//            System.out.println(String.valueOf(carList.getValueAt(carList.getSelectedRow(),3)));
+//            
+            System.out.println(insertQuery);
             PreparedStatement prepare = con.prepareStatement(insertQuery);
             prepare.execute();
-            JOptionPane.showMessageDialog(this, "Car Added");
+            JOptionPane.showMessageDialog(this, "Transaction Added");
             menuNav.ListHistory(this);
-        
+//        
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
             System.err.println(ex.getMessage());
@@ -426,13 +428,13 @@ public class OrderCust extends javax.swing.JFrame {
             DefaultTableModel model = (DefaultTableModel) carList.getModel();
             // clear data
             model.setRowCount(0);
-            String selectQuery = "SELECT * FROM tb_mobil";
+            String selectQuery = "SELECT * FROM tb_mobil m, tb_tipe_mobil tp where m.id_tipe = tp.id_tipe";
             ResultSet result = statment.executeQuery(selectQuery);
             while (result.next()) {
                 model.addRow(new Object[]{
                     result.getInt("id_mobil"),
                     result.getString("merek"),
-                    result.getString("id_tipe"),
+                    result.getString("tipe"),
                     result.getString("harga"),
                     result.getString("status")});
 

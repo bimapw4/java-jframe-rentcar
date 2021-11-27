@@ -303,6 +303,7 @@ public class LoginCust extends javax.swing.JFrame {
                 if (username.getText().equals(rs.getString("username")) && password.getText().equals(rs.getString("password"))) {
                     boolean isLogin = true;
                     UserSession.setUserLogin(rs.getString("nama"));
+                    UserSession.setUserID(rs.getString("id_customer"));
                     JOptionPane.showMessageDialog(null, "Success Login");
                     menuNav.dashboardCust(this);
                 }

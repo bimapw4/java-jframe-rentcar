@@ -28,20 +28,22 @@ public class ListHistory extends javax.swing.JFrame {
     private MenuNavigation menuNav;
     private Statement statment;
     private Connection con;
-    
+    String ID;
     public ListHistory() {
         initComponents();
         
         this.menuNav = new MenuNavigation(); 
         
-        String ID = UserSession.getUserLogin();
-        userLogin.setText(ID);
+        String Username = UserSession.getUserLogin();
+        userLogin.setText(Username);
         
         DbConnection DB = new DbConnection();
         DB.Connect();
         con = DB.conn;
         statment = DB.stmt;
         
+        ID = UserSession.getUserID();
+
         loadData();
     }
 
@@ -128,15 +130,23 @@ public class ListHistory extends javax.swing.JFrame {
 
         BookingTB.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Start Date", "End Date", "Mobil", "Status"
+                "ID Mobil", "Start Date", "End Date", "Mobil", "Harga", "Status"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         BookingTB.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 BookingTBMouseClicked(evt);
@@ -187,7 +197,7 @@ public class ListHistory extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addGap(18, 33, Short.MAX_VALUE)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -207,12 +217,12 @@ public class ListHistory extends javax.swing.JFrame {
                 .addComponent(jLabel11)
                 .addGap(466, 466, 466))
             .addGroup(kGradientPanel2Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addGap(34, 34, 34)
                 .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(198, Short.MAX_VALUE))
+                .addContainerGap(195, Short.MAX_VALUE))
         );
         kGradientPanel2Layout.setVerticalGroup(
             kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -229,7 +239,7 @@ public class ListHistory extends javax.swing.JFrame {
                 .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         kGradientPanel1.add(kGradientPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 0, 1470, 690));
@@ -360,7 +370,7 @@ public class ListHistory extends javax.swing.JFrame {
             // clear data
             model.setRowCount(0);
             String selectQuery = "SELECT * FROM tb_transaksi, tb_mobil where "
-                    + "tb_transaksi.id_mobil = tb_mobil.id_mobil and tb_transaksi.id_user = '1' ";
+                    + "tb_transaksi.id_mobil = tb_mobil.id_mobil and tb_transaksi.id_user = " + ID;
             ResultSet result = statment.executeQuery(selectQuery);
             while (result.next()) {
                 model.addRow(new Object[]{

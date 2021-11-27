@@ -261,6 +261,7 @@ public class Login extends javax.swing.JFrame {
                 if (username.getText().equals(rs.getString("username")) && password.getText().equals(rs.getString("password"))) {
                     boolean isLogin = true;
                     UserSession.setUserLogin(rs.getString("nama"));
+                    UserSession.setUserID(rs.getString("id_employe"));
                     if (rs.getString("id_role").equals("1")) {
                         JOptionPane.showMessageDialog(null, "Success Login");
                         menuNav.adminDashboard(this);
