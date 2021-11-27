@@ -5,6 +5,24 @@
  */
 package rentcar.history;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import rentcar.DbConnection;
 import rentcar.MenuNavigation;
 
 /**
@@ -16,13 +34,22 @@ public class PaymentPage extends javax.swing.JFrame {
     /**
      * Creates new form PaymentPage
      */
+    private Connection con;
+    private Statement statment;
     private MenuNavigation menuNav;
+    private JFileChooser fc = new JFileChooser();
+
+    private String NoPesan;
 
     public PaymentPage(String NoPesanan) {
         initComponents();
-        
-        this.menuNav = new MenuNavigation(); 
+        DbConnection DB = new DbConnection();
+        DB.Connect();
+        con = DB.conn;
+        statment = DB.stmt;
+        this.menuNav = new MenuNavigation();
 
+        NoPesan = NoPesanan;
     }
 
     /**
@@ -52,9 +79,9 @@ public class PaymentPage extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
-        upload = new javax.swing.JButton();
+        btnUpload = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
-        jFileChooser1 = new javax.swing.JFileChooser();
+        lblFoto = new javax.swing.JLabel();
         employees = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         dashboard = new javax.swing.JLabel();
@@ -143,15 +170,15 @@ public class PaymentPage extends javax.swing.JFrame {
         jLabel19.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel19.setText(":");
 
-        upload.setText("Upload");
-        upload.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnUpload.setText("Upload");
+        btnUpload.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                uploadMouseClicked(evt);
+                btnUploadMouseClicked(evt);
             }
         });
-        upload.addActionListener(new java.awt.event.ActionListener() {
+        btnUpload.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                uploadActionPerformed(evt);
+                btnUploadActionPerformed(evt);
             }
         });
 
@@ -186,11 +213,13 @@ public class PaymentPage extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(55, 55, 55)
-                        .addComponent(upload, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jFileChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 608, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(179, Short.MAX_VALUE))
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(92, 92, 92)
+                                .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(41, 41, 41)
+                        .addComponent(btnUpload, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(323, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -215,10 +244,10 @@ public class PaymentPage extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(upload, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41)
-                .addComponent(jFileChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(191, Short.MAX_VALUE))
+                    .addComponent(btnUpload, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(84, 84, 84)
+                .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(235, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout kGradientPanel2Layout = new javax.swing.GroupLayout(kGradientPanel2);
@@ -364,29 +393,56 @@ public class PaymentPage extends javax.swing.JFrame {
         //        MenuNavigation.login(this);
     }//GEN-LAST:event_jLabel11MouseClicked
 
-    private void uploadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadActionPerformed
+    private void btnUploadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUploadActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_uploadActionPerformed
+        JFileChooser chooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(
+                "JPG, GIF, and PNG Images", "jpg", "gif", "png");
+        chooser.setFileFilter(filter);
+        int returnVal = chooser.showOpenDialog(this);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            File file = chooser.getSelectedFile();
+            System.out.println("You chose to open this file: "
+                    + file.getName());
+            BufferedImage image;
+            try {
+                image = ImageIO.read(file);
+                //ubah lokasi file
+                ImageIO.write(image, "jpg", new File("D:/" + file.getName()));
+                String insertQuery = "UPDATE tb_transaksi SET bukti_pembayaran =  '" + file.getName() + "'WHERE id_transaksi = '" + NoPesan + "'";
+                System.out.println("SQL QUERY : " + insertQuery);
+                PreparedStatement prepare = con.prepareStatement(insertQuery);
+                prepare.execute();
+                JOptionPane.showMessageDialog(null, "Upload Payment Success");
+                menuNav.ThankYouPage(this);
+            } catch (IOException ex) {
+                Logger.getLogger(PaymentPage.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(PaymentPage.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+    }//GEN-LAST:event_btnUploadActionPerformed
 
     private void cars1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cars1MouseClicked
         // TODO add your handling code here:
-    menuNav.ListHistory(this);
+        menuNav.ListHistory(this);
 
     }//GEN-LAST:event_cars1MouseClicked
 
     private void carsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_carsMouseClicked
         // TODO add your handling code here:
-       menuNav.OrderCust(this);
+        menuNav.OrderCust(this);
     }//GEN-LAST:event_carsMouseClicked
 
-    private void uploadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_uploadMouseClicked
+    private void btnUploadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUploadMouseClicked
         // TODO add your handling code here:
         menuNav.ThankYouPage(this);
-    }//GEN-LAST:event_uploadMouseClicked
+    }//GEN-LAST:event_btnUploadMouseClicked
 
     private void dashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardMouseClicked
         // TODO add your handling code here:
-        
+
         menuNav.dashboardCust(this);
     }//GEN-LAST:event_dashboardMouseClicked
 
@@ -426,11 +482,11 @@ public class PaymentPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnUpload;
     private javax.swing.JLabel cars;
     private javax.swing.JLabel cars1;
     private javax.swing.JLabel dashboard;
     private javax.swing.JLabel employees;
-    private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -455,7 +511,7 @@ public class PaymentPage extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private keeptoo.KGradientPanel kGradientPanel1;
     private keeptoo.KGradientPanel kGradientPanel2;
-    private javax.swing.JButton upload;
+    private javax.swing.JLabel lblFoto;
     private javax.swing.JLabel userLogin;
     // End of variables declaration//GEN-END:variables
 }

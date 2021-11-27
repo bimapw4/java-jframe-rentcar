@@ -36,6 +36,7 @@ public class CarMaster extends javax.swing.JFrame {
         statment = DB.stmt;
         this.menuNav = new MenuNavigation();
         loadData();
+        loadTotalCarAv();
 
     }
 
@@ -52,7 +53,7 @@ public class CarMaster extends javax.swing.JFrame {
         kGradientPanel1 = new keeptoo.KGradientPanel();
         kGradientPanel2 = new keeptoo.KGradientPanel();
         kGradientPanel5 = new keeptoo.KGradientPanel();
-        jLabel8 = new javax.swing.JLabel();
+        lblAv = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel29 = new javax.swing.JLabel();
@@ -68,7 +69,7 @@ public class CarMaster extends javax.swing.JFrame {
         kGradientPanel6 = new keeptoo.KGradientPanel();
         jLabel18 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
-        jLabel19 = new javax.swing.JLabel();
+        lblBook = new javax.swing.JLabel();
         listorders = new javax.swing.JLabel();
         employees = new javax.swing.JLabel();
         customers = new javax.swing.JLabel();
@@ -104,8 +105,7 @@ public class CarMaster extends javax.swing.JFrame {
         kGradientPanel5.setkStartColor(new java.awt.Color(246, 245, 245));
         kGradientPanel5.setPreferredSize(new java.awt.Dimension(236, 79));
 
-        jLabel8.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel8.setText("1");
+        lblAv.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
 
         jLabel7.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel7.setText("Available Car");
@@ -133,7 +133,7 @@ public class CarMaster extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblAv, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
         kGradientPanel5Layout.setVerticalGroup(
@@ -142,8 +142,8 @@ public class CarMaster extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addGroup(kGradientPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jLabel8))
-                .addContainerGap(29, Short.MAX_VALUE))
+                    .addComponent(lblAv, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(25, Short.MAX_VALUE))
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
         );
 
@@ -185,13 +185,13 @@ public class CarMaster extends javax.swing.JFrame {
 
         carList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Car Id", "Merk", "Type", "Fee", "Status"
+                "Merk", "Type", "Fee", "Status"
             }
         ));
         jScrollPane1.setViewportView(carList);
@@ -245,8 +245,7 @@ public class CarMaster extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLabel19.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel19.setText("1");
+        lblBook.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
 
         javax.swing.GroupLayout kGradientPanel6Layout = new javax.swing.GroupLayout(kGradientPanel6);
         kGradientPanel6.setLayout(kGradientPanel6Layout);
@@ -257,7 +256,7 @@ public class CarMaster extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel18)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
-                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblBook, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
         );
         kGradientPanel6Layout.setVerticalGroup(
@@ -265,9 +264,9 @@ public class CarMaster extends javax.swing.JFrame {
             .addGroup(kGradientPanel6Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(kGradientPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel19)
+                    .addComponent(lblBook, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel18))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
             .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
         );
 
@@ -528,6 +527,40 @@ public class CarMaster extends javax.swing.JFrame {
         });
     }
 
+    private void loadTotalCarAv() {
+        try {
+            String selectQuery = "SELECT *, Count(*) as count FROM tb_mobil WHERE status= 'AVAILABLE' ";
+            ResultSet result = statment.executeQuery(selectQuery);
+            while (result.next()) {
+                if (result.getString("count") != null) {
+
+                    lblAv.setText(result.getString("count"));
+                } else {
+                    lblAv.setText("0");
+                }
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }
+
+    private void loadTotalCarBook() {
+        try {
+            String selectQuery = "SELECT *, Count(*) as count FROM tb_mobil WHERE status= 'BOOKED'";
+            ResultSet result = statment.executeQuery(selectQuery);
+            while (result.next()) {
+                if (result.getString("count") != null) {
+
+                    lblBook.setText(result.getString("count"));
+                } else {
+                    lblBook.setText("0");
+                }
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }
+
     private void loadData() {
         try {
             DefaultTableModel model = (DefaultTableModel) carList.getModel();
@@ -537,7 +570,6 @@ public class CarMaster extends javax.swing.JFrame {
             ResultSet result = statment.executeQuery(selectQuery);
             while (result.next()) {
                 model.addRow(new Object[]{
-                    result.getInt("id_mobil"),
                     result.getString("merek"),
                     result.getString("id_tipe"),
                     result.getString("harga"),
@@ -566,7 +598,6 @@ public class CarMaster extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
@@ -574,7 +605,6 @@ public class CarMaster extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -584,6 +614,8 @@ public class CarMaster extends javax.swing.JFrame {
     private keeptoo.KGradientPanel kGradientPanel2;
     private keeptoo.KGradientPanel kGradientPanel5;
     private keeptoo.KGradientPanel kGradientPanel6;
+    private javax.swing.JLabel lblAv;
+    private javax.swing.JLabel lblBook;
     private javax.swing.JLabel listorders;
     private javax.swing.JLabel userLogin;
     // End of variables declaration//GEN-END:variables

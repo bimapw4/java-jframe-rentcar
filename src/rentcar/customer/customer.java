@@ -277,13 +277,13 @@ public class customer extends javax.swing.JFrame {
 
         custList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "NO", "name", "email", "phone"
+                "Name", "Email", "Phone"
             }
         ));
         jScrollPane1.setViewportView(custList);
@@ -590,11 +590,8 @@ public class customer extends javax.swing.JFrame {
             ResultSet result = statment.executeQuery(selectQuery);
             while (result.next()) {
                 model.addRow(new Object[]{
-                    result.getInt("id_customer"),
                     result.getString("nama"),
                     result.getString("email"),
-                    result.getString("username"),
-                    result.getString("password"),
                     result.getString("phone")});
 
                 custList.setModel(model);
