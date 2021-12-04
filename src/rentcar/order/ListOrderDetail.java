@@ -5,7 +5,6 @@
  */
 package rentcar.order;
 
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -34,19 +33,31 @@ public class ListOrderDetail extends javax.swing.JFrame {
 
     public ListOrderDetail(String NoPesanan) {
         initComponents();
-        
+
         this.menuNav = new MenuNavigation();
-        
+
         NoPesan = NoPesanan;
-        
+
         ID = UserSession.getUserID();
 
         DbConnection DB = new DbConnection();
         DB.Connect();
         con = DB.conn;
         statment = DB.stmt;
-        
+
         loadData();
+
+        acc.setVisible(false);
+        finish.setVisible(false);
+        if (Status.getText().equals("APPROVED")) {
+            System.out.print("masuk sini");
+            finish.setVisible(true);
+            acc.setVisible(false);
+
+        } else {
+            finish.setVisible(false);
+            acc.setVisible(true);
+        }
     }
 
     /**
@@ -80,9 +91,9 @@ public class ListOrderDetail extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         StartDate = new javax.swing.JTextField();
         EndDate = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        PayNow = new com.k33ptoo.components.KButton();
+        acc = new com.k33ptoo.components.KButton();
+        guaranty = new javax.swing.JTextField();
+        finish = new com.k33ptoo.components.KButton();
         jLabel16 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         dashboard = new javax.swing.JLabel();
@@ -143,7 +154,7 @@ public class ListOrderDetail extends javax.swing.JFrame {
             }
         });
 
-        jPanel4.setBackground(new java.awt.Color(182, 231, 242));
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel1.setText("Car");
@@ -161,7 +172,7 @@ public class ListOrderDetail extends javax.swing.JFrame {
         jLabel8.setText("End Date");
 
         jLabel9.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel9.setText("Address");
+        jLabel9.setText("Guaranty");
 
         Merek.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         Merek.setText("Honda Civic");
@@ -194,21 +205,37 @@ public class ListOrderDetail extends javax.swing.JFrame {
             }
         });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
-
-        PayNow.setText("Approve");
-        PayNow.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        PayNow.setkBackGroundColor(new java.awt.Color(75, 160, 175));
-        PayNow.setkEndColor(new java.awt.Color(255, 255, 255));
-        PayNow.setkHoverEndColor(new java.awt.Color(255, 255, 255));
-        PayNow.setkHoverForeGround(new java.awt.Color(255, 255, 204));
-        PayNow.setkHoverStartColor(new java.awt.Color(75, 160, 175));
-        PayNow.setkStartColor(new java.awt.Color(75, 160, 175));
-        PayNow.addActionListener(new java.awt.event.ActionListener() {
+        acc.setText("Approve");
+        acc.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        acc.setkBackGroundColor(new java.awt.Color(75, 160, 175));
+        acc.setkEndColor(new java.awt.Color(255, 255, 255));
+        acc.setkHoverEndColor(new java.awt.Color(255, 255, 255));
+        acc.setkHoverForeGround(new java.awt.Color(255, 255, 204));
+        acc.setkHoverStartColor(new java.awt.Color(75, 160, 175));
+        acc.setkStartColor(new java.awt.Color(75, 160, 175));
+        acc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PayNowActionPerformed(evt);
+                accActionPerformed(evt);
+            }
+        });
+
+        guaranty.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guarantyActionPerformed(evt);
+            }
+        });
+
+        finish.setText("Finish");
+        finish.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        finish.setkBackGroundColor(new java.awt.Color(75, 160, 175));
+        finish.setkEndColor(new java.awt.Color(255, 255, 255));
+        finish.setkHoverEndColor(new java.awt.Color(255, 255, 255));
+        finish.setkHoverForeGround(new java.awt.Color(255, 255, 204));
+        finish.setkHoverStartColor(new java.awt.Color(75, 160, 175));
+        finish.setkStartColor(new java.awt.Color(75, 160, 175));
+        finish.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                finishActionPerformed(evt);
             }
         });
 
@@ -217,48 +244,51 @@ public class ListOrderDetail extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addComponent(finish, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(acc, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel19)
-                        .addGap(18, 18, 18)
-                        .addComponent(Status, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(guaranty, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabel14)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(Merek, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel19)
+                                .addGap(18, 18, 18)
+                                .addComponent(Status, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabel15)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
-                                .addComponent(Harga, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(StartDate, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(77, 77, 77)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(EndDate, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jScrollPane1))
-                .addContainerGap(197, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(PayNow, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34))
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addComponent(jLabel14)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(Merek, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addComponent(jLabel15)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(Harga, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(StartDate, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(77, 77, 77)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(EndDate, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(116, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(29, 29, 29)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Merek, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -284,10 +314,12 @@ public class ListOrderDetail extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(PayNow, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addComponent(guaranty, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(81, 81, 81)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(acc, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(finish, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout kGradientPanel2Layout = new javax.swing.GroupLayout(kGradientPanel2);
@@ -303,11 +335,15 @@ public class ListOrderDetail extends javax.swing.JFrame {
                 .addComponent(jLabel11)
                 .addGap(466, 466, 466))
             .addGroup(kGradientPanel2Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
                 .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(kGradientPanel2Layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(kGradientPanel2Layout.createSequentialGroup()
+                        .addGap(73, 73, 73)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(198, Short.MAX_VALUE))
         );
         kGradientPanel2Layout.setVerticalGroup(
@@ -448,42 +484,6 @@ public class ListOrderDetail extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
-        // TODO add your handling code here:
-        //        JOptionPane.showMessageDialog(null, "Logout Success");
-        //        MenuNavigation.login(this);
-    }//GEN-LAST:event_jLabel11MouseClicked
-
-    private void StartDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StartDateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_StartDateActionPerformed
-
-    private void EndDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EndDateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_EndDateActionPerformed
-
-    private void PayNowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PayNowActionPerformed
-        // TODO add your handling code here:
-        try {
-
-            String insertQuery = "UPDATE tb_transaksi SET "
-                    + "status = 'APPROVED', id_karyawan = '" + ID
-                    + "' WHERE id_transaksi = '" + NoPesan + "'";
-            
-            PreparedStatement prepare = con.prepareStatement(insertQuery);
-            prepare.execute();
-            JOptionPane.showMessageDialog(this, "Sucess Approve");
-            
-            System.out.println(insertQuery);
-            menuNav.ListOrder(this);
-            
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage());
-            System.err.println(ex.getMessage());
-        }
-        this.setVisible(false);
-    }//GEN-LAST:event_PayNowActionPerformed
-
     private void dashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardMouseClicked
         // TODO add your handling code here:
         menuNav.adminDashboard(this);
@@ -508,9 +508,71 @@ public class ListOrderDetail extends javax.swing.JFrame {
         // TODO add your handling code here:
         menuNav.Role(this);
     }//GEN-LAST:event_jLabel23MouseClicked
-    
-     private void loadData() {
-         System.out.println(NoPesan);
+
+    private void EndDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EndDateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EndDateActionPerformed
+
+    private void StartDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StartDateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_StartDateActionPerformed
+
+    private void guarantyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guarantyActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_guarantyActionPerformed
+
+    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
+        // TODO add your handling code here:
+        //        JOptionPane.showMessageDialog(null, "Logout Success");
+        //        MenuNavigation.login(this);
+    }//GEN-LAST:event_jLabel11MouseClicked
+
+    private void accActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accActionPerformed
+        // TODO add your handling code here:
+        try {
+
+            String insertQuery = "UPDATE tb_transaksi SET "
+                    + "status = 'APPROVED', id_karyawan = '" + ID
+                    + "' WHERE id_transaksi = '" + NoPesan + "'";
+
+            PreparedStatement prepare = con.prepareStatement(insertQuery);
+            prepare.execute();
+            JOptionPane.showMessageDialog(this, "Sucess Approve");
+
+            System.out.println(insertQuery);
+            menuNav.ListOrder(this);
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+            System.err.println(ex.getMessage());
+        }
+        this.setVisible(false);
+    }//GEN-LAST:event_accActionPerformed
+
+    private void finishActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finishActionPerformed
+        // TODO add your handling code here:
+        try {
+
+            String insertQuery = "UPDATE tb_transaksi SET "
+                    + "status = 'FINISH', id_karyawan = '" + ID
+                    + "' WHERE id_transaksi = '" + NoPesan + "'";
+
+            PreparedStatement prepare = con.prepareStatement(insertQuery);
+            prepare.execute();
+            JOptionPane.showMessageDialog(this, "Order Finish");
+
+            System.out.println(insertQuery);
+            menuNav.ListOrder(this);
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+            System.err.println(ex.getMessage());
+        }
+        this.setVisible(false);
+    }//GEN-LAST:event_finishActionPerformed
+
+    private void loadData() {
+
         try {
             // clear data
             String selectQuery = "SELECT * FROM tb_transaksi, tb_mobil "
@@ -521,14 +583,20 @@ public class ListOrderDetail extends javax.swing.JFrame {
                 Harga.setText(result.getString("harga_sewa"));
                 Status.setText(result.getString("status"));
                 StartDate.setText(result.getString("start_date"));
-                EndDate.setText( result.getString("end_date"));
+                EndDate.setText(result.getString("end_date"));
+                guaranty.setText(result.getString("jaminan"));
             }
+            StartDate.setEditable(false);
+            EndDate.setEditable(false);
+            guaranty.setEditable(false);
+
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
 
-         System.out.println(NoPesan);
+        System.out.println(NoPesan);
     }
+
     /**
      * @param args the command line arguments
      */
@@ -568,13 +636,15 @@ public class ListOrderDetail extends javax.swing.JFrame {
     private javax.swing.JTextField EndDate;
     private javax.swing.JLabel Harga;
     private javax.swing.JLabel Merek;
-    private com.k33ptoo.components.KButton PayNow;
     private javax.swing.JTextField StartDate;
     private javax.swing.JLabel Status;
+    private com.k33ptoo.components.KButton acc;
     private javax.swing.JLabel cars;
     private javax.swing.JLabel customers;
     private javax.swing.JLabel dashboard;
     private javax.swing.JLabel employees;
+    private com.k33ptoo.components.KButton finish;
+    private javax.swing.JTextField guaranty;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -598,8 +668,6 @@ public class ListOrderDetail extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private keeptoo.KGradientPanel kGradientPanel1;
     private keeptoo.KGradientPanel kGradientPanel2;
     private javax.swing.JLabel listorders;

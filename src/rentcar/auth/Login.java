@@ -107,7 +107,7 @@ public class Login extends javax.swing.JFrame {
 
         username.setBackground(new java.awt.Color(208, 233, 255));
         username.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        username.setText("saskia");
+        username.setText("bima");
         username.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(75, 160, 175)));
         username.setSelectionColor(new java.awt.Color(0, 153, 153));
         username.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -119,10 +119,10 @@ public class Login extends javax.swing.JFrame {
             }
         });
         username.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 usernameInputMethodTextChanged(evt);
+            }
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
         username.addActionListener(new java.awt.event.ActionListener() {
@@ -137,7 +137,7 @@ public class Login extends javax.swing.JFrame {
         });
 
         password.setBackground(new java.awt.Color(208, 233, 255));
-        password.setText("saskia");
+        password.setText("bima");
         password.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(75, 160, 175)));
         password.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -168,12 +168,13 @@ public class Login extends javax.swing.JFrame {
                 .addGap(45, 45, 45))
             .addGroup(kGradientPanel2Layout.createSequentialGroup()
                 .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(kGradientPanel2Layout.createSequentialGroup()
-                            .addGap(21, 21, 21)
-                            .addComponent(jLabel1)
-                            .addGap(210, 210, 210)))
+                    .addGroup(kGradientPanel2Layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(kGradientPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(210, 210, 210))))
                     .addGroup(kGradientPanel2Layout.createSequentialGroup()
                         .addGap(150, 150, 150)
                         .addComponent(jLabel2)
