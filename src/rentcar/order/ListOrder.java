@@ -18,6 +18,13 @@ import javax.swing.table.DefaultTableModel;
 import rentcar.DbConnection;
 import rentcar.MenuNavigation;
 import rentcar.history.DetailHistory;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
+import java.util.HashMap;
+
 
 public class ListOrder extends javax.swing.JFrame {
 
@@ -528,6 +535,15 @@ public class ListOrder extends javax.swing.JFrame {
 
     private void ExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExportActionPerformed
         // TODO add your handling code here:
+        try {
+            String jrxmlFile = "./src/RentCar/report/HistoryOrderAdmin.jrxml";
+            HashMap param = new HashMap();
+            JasperReport jspR = JasperCompileManager.compileReport(jrxmlFile);
+            JasperPrint jPrint = JasperFillManager.fillReport(jspR, param, con);
+            JasperViewer.viewReport(jPrint, false);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e);
+        }
     }//GEN-LAST:event_ExportActionPerformed
     
      private void loadDataNotFinish() {
