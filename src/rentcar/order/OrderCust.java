@@ -13,6 +13,8 @@ import java.sql.Statement;
 import java.sql.PreparedStatement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import rentcar.DbConnection;
@@ -72,12 +74,10 @@ public class OrderCust extends javax.swing.JFrame {
         carList = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
         StartDate = new com.toedter.calendar.JDateChooser();
-        jLabel4 = new javax.swing.JLabel();
         EndDate = new com.toedter.calendar.JDateChooser();
         jLabel1 = new javax.swing.JLabel();
         cbJaminan = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
-        total = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         dashboard = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -162,9 +162,6 @@ public class OrderCust extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel6.setText("Start Date");
 
-        jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel4.setText("Total Price ");
-
         jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel1.setText("Guaranty : (example : SIM / KTP)");
 
@@ -202,10 +199,7 @@ public class OrderCust extends javax.swing.JFrame {
                             .addComponent(StartDate, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cbJaminan, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(87, 87, 87)
-                        .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(EndDate, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
-                            .addComponent(total))))
+                        .addComponent(EndDate, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(198, Short.MAX_VALUE))
             .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(kGradientPanel2Layout.createSequentialGroup()
@@ -238,13 +232,9 @@ public class OrderCust extends javax.swing.JFrame {
                         .addGap(42, 42, 42)
                         .addComponent(EndDate, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(38, 38, 38)
-                .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
-                .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(total)
-                    .addComponent(cbJaminan, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE))
+                .addComponent(cbJaminan, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
                 .addComponent(btnLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
@@ -364,10 +354,12 @@ public class OrderCust extends javax.swing.JFrame {
             SimpleDateFormat DateFor = new SimpleDateFormat("yyyy-MM-dd");
             String startdates = DateFor.format(startdate);
             String enddates = DateFor.format(enddate);
-            System.out.println(startdates);
-            System.out.println(ID);
-            long diff = enddate.getTime() - startdate.getTime();
-            long diffDays = diff / (24 * 60 * 60 * 1000);
+
+            long diffInMillies = Math.abs(startdate.getTime() - enddate.getTime());
+            long diff = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
+
+            int harga_sewa = (int)diff * Integer.parseInt(String.valueOf(carList.getValueAt(carList.getSelectedRow(), 3)));
+
             String jaminan = cbJaminan.getItemAt(this.cbJaminan.getSelectedIndex());
             String insertQuery = "INSERT INTO tb_transaksi(id_transaksi,start_date,end_date,id_mobil,id_karyawan,id_user,harga_sewa,jaminan) VALUES ('0','"
             + startdates + "','"
@@ -375,7 +367,7 @@ public class OrderCust extends javax.swing.JFrame {
             + carList.getValueAt(carList.getSelectedRow(), 0) + "','"
             + '1' + "','"
             + ID + "','"
-            + carList.getValueAt(carList.getSelectedRow(), 3) + "','"
+            + harga_sewa + "','"
             + jaminan + "')";
             PreparedStatement prepare = con.prepareStatement(insertQuery);
             prepare.execute();
@@ -475,7 +467,6 @@ public class OrderCust extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -484,7 +475,6 @@ public class OrderCust extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private keeptoo.KGradientPanel kGradientPanel1;
     private keeptoo.KGradientPanel kGradientPanel2;
-    private javax.swing.JTextField total;
     private javax.swing.JLabel userLogin;
     // End of variables declaration//GEN-END:variables
 }

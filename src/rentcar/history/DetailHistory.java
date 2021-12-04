@@ -465,10 +465,11 @@ public class DetailHistory extends javax.swing.JFrame {
             ResultSet result = statment.executeQuery(selectQuery);
             while (result.next()) {
                 Merek.setText(result.getString("merek"));
-                Harga.setText(result.getString("harga_sewa"));
+                Harga.setText("Rp "+result.getString("harga"));
                 Status.setText(result.getString("status"));
                 StartDate.setText(result.getString("start_date"));
                 EndDate.setText(result.getString("end_date"));
+                total.setText("Rp "+result.getString("harga_sewa"));
             }
            StartDate.setEditable(false);
            EndDate.setEditable(false);
