@@ -70,7 +70,7 @@ public class ListHistory extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        TBFinishOrder = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         dashboard = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -157,7 +157,7 @@ public class ListHistory extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel4.setText("Finish Order");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        TBFinishOrder.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -168,7 +168,12 @@ public class ListHistory extends javax.swing.JFrame {
                 "Id", "Start Date", "End Date", "Car Name", "Total Price"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        TBFinishOrder.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TBFinishOrderMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(TBFinishOrder);
 
         javax.swing.GroupLayout kGradientPanel2Layout = new javax.swing.GroupLayout(kGradientPanel2);
         kGradientPanel2.setLayout(kGradientPanel2Layout);
@@ -330,6 +335,13 @@ public class ListHistory extends javax.swing.JFrame {
         new DetailHistory(NoPesanan).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_BookingTBMouseClicked
+
+    private void TBFinishOrderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TBFinishOrderMouseClicked
+        // TODO add your handling code here:
+        String NoPesanan = TBFinishOrder.getValueAt(TBFinishOrder.getSelectedRow(), 0).toString();
+        new FinishHistory(NoPesanan).setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_TBFinishOrderMouseClicked
     
     private void loadData() {
         try {
@@ -337,7 +349,7 @@ public class ListHistory extends javax.swing.JFrame {
             // clear data
             System.out.println(ID);
             model.setRowCount(0);
-            String selectQuery = "SELECT * FROM tb_transaksi, tb_mobil where "
+            String selectQuery = "SELECT * FROM tb_transaksi, tb_mobil where tb_transaksi.status != 'FINISH' and "
                     + "tb_transaksi.id_mobil = tb_mobil.id_mobil and tb_transaksi.id_user = " + ID;
             ResultSet result = statment.executeQuery(selectQuery);
             while (result.next()) {
@@ -357,10 +369,10 @@ public class ListHistory extends javax.swing.JFrame {
     }
     private void loadDataFinish() {
         try {
-            DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
+            DefaultTableModel model = (DefaultTableModel) TBFinishOrder.getModel();
             // clear data
             model.setRowCount(0);
-            String selectQuery = "SELECT * FROM tb_transaksi, tb_mobil where tb_transaksi.status != 'FINISH' "
+            String selectQuery = "SELECT * FROM tb_transaksi, tb_mobil where tb_transaksi.status = 'FINISH' "
                     + "and tb_mobil.id_mobil = tb_transaksi.id_mobil";
             ResultSet result = statment.executeQuery(selectQuery);
             while (result.next()) {
@@ -374,7 +386,7 @@ public class ListHistory extends javax.swing.JFrame {
                     result.getString("tb_transaksi.status")
                 });
 
-                jTable2.setModel(model);
+                TBFinishOrder.setModel(model);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
@@ -417,6 +429,7 @@ public class ListHistory extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable BookingTB;
+    private javax.swing.JTable TBFinishOrder;
     private javax.swing.JLabel cars;
     private javax.swing.JLabel cars1;
     private javax.swing.JLabel dashboard;
@@ -433,7 +446,6 @@ public class ListHistory extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable2;
     private keeptoo.KGradientPanel kGradientPanel1;
     private keeptoo.KGradientPanel kGradientPanel2;
     private javax.swing.JLabel userLogin;
