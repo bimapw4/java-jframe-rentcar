@@ -614,7 +614,7 @@ public class CarMaster extends javax.swing.JFrame {
 
     private void loadTotalCarBook() {
         try {
-            String selectQuery = "SELECT *, Count(*) as count FROM tb_mobil WHERE status= 'BOOKED'";
+            String selectQuery = "SELECT Count(*) as count FROM tb_mobil WHERE status = 'BOOKED'";
             ResultSet result = statment.executeQuery(selectQuery);
             while (result.next()) {
                 if (result.getString("count") != null) {

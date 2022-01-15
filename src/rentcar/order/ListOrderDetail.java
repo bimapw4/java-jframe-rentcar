@@ -641,6 +641,14 @@ public class ListOrderDetail extends javax.swing.JFrame {
                     + "' WHERE id_transaksi = '" + NoPesan + "'";
             PreparedStatement prepare = con.prepareStatement(insertQuery);
             prepare.execute();
+            
+            String UpdateQueryMobil = "UPDATE tb_mobil SET "
+            + "status = 'AVAILABLE'"
+            + "WHERE id_mobil = ( select id_mobil from tb_transaksi "
+                    + "where id_transaksi ='" + NoPesan + "')";
+
+            PreparedStatement UpdateMobil = con.prepareStatement(UpdateQueryMobil);
+            UpdateMobil.execute();
             JOptionPane.showMessageDialog(this, "Order Finish");
 
             System.out.println(insertQuery);
