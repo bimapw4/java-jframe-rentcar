@@ -119,6 +119,7 @@ public class dashboard extends javax.swing.JFrame {
 
         totalpay.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         totalpay.setText("1");
+        totalpay.setToolTipText("");
 
         jLabel7.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel7.setText("Total Payment");
@@ -129,23 +130,25 @@ public class dashboard extends javax.swing.JFrame {
             kGradientPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(kGradientPanel5Layout.createSequentialGroup()
-                .addGap(190, 190, 190)
+                .addGap(54, 54, 54)
                 .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(totalpay, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel5Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(totalpay, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(128, 128, 128))
         );
         kGradientPanel5Layout.setVerticalGroup(
             kGradientPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(kGradientPanel5Layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
-                .addComponent(totalpay)
-                .addGap(26, 26, 26)
-                .addComponent(jLabel7)
-                .addGap(21, 21, 21))
+                .addGroup(kGradientPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(kGradientPanel5Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                        .addComponent(totalpay)
+                        .addGap(75, 75, 75))
+                    .addGroup(kGradientPanel5Layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(jLabel7)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         jLabel29.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
@@ -568,7 +571,7 @@ public class dashboard extends javax.swing.JFrame {
     private void loadDataTotalPay() {
         try {
 
-            String selectQuery = "SELECT *, SUM(harga_sewa) as sum FROM tb_transaksi where tb_transaksi.status = 'FINISH'";
+            String selectQuery = "SELECT *, SUM(harga_sewa) as sum FROM tb_transaksi";
             ResultSet result = statment.executeQuery(selectQuery);
             while (result.next()) {
                 if (result.getString("sum") != null) {
@@ -589,7 +592,7 @@ public class dashboard extends javax.swing.JFrame {
     private void loadTotalOrder() {
         try {
 
-            String selectQuery = "SELECT *, Count(*) as count FROM tb_transaksi where tb_transaksi.status = 'WAITING'";
+            String selectQuery = "SELECT *, Count(*) as count FROM tb_transaksi where tb_transaksi.status != 'FINISH'";
             ResultSet result = statment.executeQuery(selectQuery);
             while (result.next()) {
                 if (result.getString("count") != null) {

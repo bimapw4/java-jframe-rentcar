@@ -5,7 +5,12 @@
  */
 package rentcar.dashboard;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
+import rentcar.DbConnection;
 import rentcar.MenuNavigation;
 import rentcar.UserSession;
 
@@ -20,13 +25,25 @@ public class dasboardCust extends javax.swing.JFrame {
      */
     
     private MenuNavigation menuNav;
+    private Connection con;
+    private Statement statment;
+    
     public dasboardCust() {
         initComponents();
+        
+        DbConnection DB = new DbConnection();
+        DB.Connect();
+        con = DB.conn;
+        statment = DB.stmt;
         
         this.menuNav = new MenuNavigation(); 
         
         String ID = UserSession.getUserLogin();
         userLogin.setText(ID);
+        
+        String UserID = UserSession.getUserID();
+
+        loadTotalOrder(UserID);
     }
 
     /**
@@ -42,7 +59,7 @@ public class dasboardCust extends javax.swing.JFrame {
         kGradientPanel2 = new keeptoo.KGradientPanel();
         kGradientPanel5 = new keeptoo.KGradientPanel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
+        total = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel24 = new javax.swing.JLabel();
@@ -81,9 +98,9 @@ public class dasboardCust extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Your Booked Car");
 
-        jLabel15.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setText("0");
+        total.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
+        total.setForeground(new java.awt.Color(255, 255, 255));
+        total.setText("0");
 
         javax.swing.GroupLayout kGradientPanel5Layout = new javax.swing.GroupLayout(kGradientPanel5);
         kGradientPanel5.setLayout(kGradientPanel5Layout);
@@ -95,7 +112,7 @@ public class dasboardCust extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel5Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(total, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(73, 73, 73))
         );
         kGradientPanel5Layout.setVerticalGroup(
@@ -104,7 +121,7 @@ public class dasboardCust extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addComponent(jLabel7)
                 .addGap(27, 27, 27)
-                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(total, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(34, Short.MAX_VALUE))
         );
 
@@ -371,7 +388,27 @@ public class dasboardCust extends javax.swing.JFrame {
         // TODO add your handling code here:
         menuNav.ListHistory(this);
     }//GEN-LAST:event_cars1MouseClicked
+    
+        private void loadTotalOrder(String UserID) {
+        try {
 
+            String selectQuery = "SELECT Count(*) as count FROM tb_transaksi where id_user = " + UserID;
+            ResultSet result = statment.executeQuery(selectQuery);
+            while (result.next()) {
+                if (result.getString("count") != null) {
+                    total.setText(result.getString("count"));
+                } else {
+                    total.setText("0");
+                }
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+            System.err.println(ex.getMessage());
+        }
+
+    }
+        
     /**
      * @param args the command line arguments
      */
@@ -414,7 +451,6 @@ public class dasboardCust extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel24;
@@ -430,6 +466,7 @@ public class dasboardCust extends javax.swing.JFrame {
     private keeptoo.KGradientPanel kGradientPanel5;
     private keeptoo.KGradientPanel kGradientPanel6;
     private keeptoo.KGradientPanel kGradientPanel7;
+    private javax.swing.JLabel total;
     private javax.swing.JLabel userLogin;
     // End of variables declaration//GEN-END:variables
 }
